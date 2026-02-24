@@ -7,13 +7,10 @@ namespace kurswork_back.Services
         {
             // Отримати всіх користувачів
             Task<List<User>> GetAllAsync();
-
             // Отримати користувача по Id
             Task<User?> GetByIdAsync(string id);
-
             // Створити користувача
             Task CreateAsync(User user);
-
             // Видалити користувача
             Task DeleteAsync(string id);
         }

@@ -1,5 +1,63 @@
 [
   {
+    "ContainingType": "kurswork_back.Controllers.TarifController",
+    "Method": "GetAll",
+    "RelativePath": "api/tarifs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "kurswork_back.Controllers.TarifController",
+    "Method": "Create",
+    "RelativePath": "api/tarifs",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tarif",
+        "Type": "kurswork_back.Models.Tarif",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "kurswork_back.Controllers.TarifController",
+    "Method": "GetById",
+    "RelativePath": "api/tarifs/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "kurswork_back.Controllers.TarifController",
+    "Method": "Delete",
+    "RelativePath": "api/tarifs/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "kurswork_back.Controllers.UsersController",
     "Method": "GetAll",
     "RelativePath": "api/users",
