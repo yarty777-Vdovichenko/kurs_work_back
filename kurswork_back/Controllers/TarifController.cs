@@ -47,5 +47,15 @@ namespace kurswork_back.Controllers
 
             return Ok();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(string id, [FromBody] Tarif tarif)
+        {
+            var updated = await _service.UpdateAsync(id, tarif);
+
+            if (!updated)
+                return NotFound();
+
+            return NoContent();
+        }
     }
 }

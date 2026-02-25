@@ -9,6 +9,7 @@ namespace kurswork_back.Services
         Task<Tarif?> GetByIdAsync(string id);
         Task CreateAsync(Tarif tarif);
         Task DeleteAsync(string id);
+        Task<bool> UpdateAsync(string id, Tarif updatedTarif);
     }
     public class TarifService : ITarifService
     {
@@ -57,6 +58,18 @@ namespace kurswork_back.Services
                 throw new ArgumentException("id is empty");
 
             await _repository.DeleteAsync(id);
+        }
+        public async Task<bool> UpdateAsync(string id, Tarif updatedTarif)
+        {
+            var existingTarif = await _repository.GetByIdAsync(id);
+
+            if (existingTarif == null)
+                return false;
+
+            updatedTarif.Id = existingTarif.Id;
+
+            await _repository.UpdateAsync(updatedTarif);
+            return true;
         }
     }
 }

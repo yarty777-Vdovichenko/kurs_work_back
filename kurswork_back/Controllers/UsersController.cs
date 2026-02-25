@@ -67,6 +67,16 @@ namespace kurswork_back.Controllers
             await _userService.DeleteAsync(id);
             return NoContent(); // 204
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(string id,[FromBody] User user)
+        {
+            var updated = await _userService.UpdateAsync(id, user);
+
+            if (!updated)
+                return NotFound();
+
+            return NoContent();
+        }
 
     }
 }

@@ -2,10 +2,10 @@
 {
     public class SimCard
     {
-        public string? id { get; set; }
-        public string simNumber { get; set; }
-        public string status { get; set; }
-        public string createdAt { get; set; }
-        public Tarif tarif { get; set; }
+        public string? Id { get; set; }
+        public string SimNumber { get; set; }
+        public string Status { get; set; }
+        public string CreatedAt { get; set; }
+        public Tarif Tarif { get; set; }
     }
 }

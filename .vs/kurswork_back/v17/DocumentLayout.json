@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\kurswork_back\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\models\\subscriber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\models\\subscriber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\models\\simcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\models\\simcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,28 +30,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "kurswork_back\\Controllers\\UsersController.cs",
-              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "kurswork_back\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAgwDQAAAAtAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "SimCard.cs",
+              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Models\\SimCard.cs",
+              "RelativeDocumentMoniker": "kurswork_back\\Models\\SimCard.cs",
+              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Models\\SimCard.cs",
+              "RelativeToolTip": "kurswork_back\\Models\\SimCard.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T15:40:09.138Z",
+              "WhenOpened": "2026-02-25T21:39:30.105Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Program.cs",
-              "RelativeDocumentMoniker": "kurswork_back\\Program.cs",
-              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Program.cs",
-              "RelativeToolTip": "kurswork_back\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Subscriber.cs",
+              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Models\\Subscriber.cs",
+              "RelativeDocumentMoniker": "kurswork_back\\Models\\Subscriber.cs",
+              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Models\\Subscriber.cs",
+              "RelativeToolTip": "kurswork_back\\Models\\Subscriber.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T15:39:07.413Z",
+              "WhenOpened": "2026-02-25T21:38:57.097Z",
               "EditorCaption": ""
             }
           ]

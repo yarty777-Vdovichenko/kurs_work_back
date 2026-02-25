@@ -17,6 +17,7 @@ namespace kurswork_back.Repositories
 
         // Видалити користувача
         Task DeleteAsync(string id);
+        Task UpdateAsync(User user);
     }
     public class UserRepository : IUserRepository
     {
@@ -57,6 +58,10 @@ namespace kurswork_back.Repositories
         public async Task DeleteAsync(string id)
         {
             await _users.DeleteOneAsync(u => u.Id == id);
+        }
+        public async Task UpdateAsync(User user)
+        {
+           await _users.ReplaceOneAsync(user => user.Id == user.Id, user);
         }
     }
 }
