@@ -1,6 +1,17 @@
+using kurswork_back.Data;
+using kurswork_back.Repositories;
+using kurswork_back.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSingleton<MongoContext>();
 // Add services to the container.
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddScoped<ITarifRepository, TarifRepository>();
+builder.Services.AddScoped<ITarifService, TarifService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

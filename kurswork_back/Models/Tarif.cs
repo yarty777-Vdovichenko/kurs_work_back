@@ -1,12 +1,22 @@
-﻿namespace kurswork_back.Models
-{
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+
+namespace kurswork_back.Models
+{    
     public class Tarif
     {
-        public string? id { get; set; }
-        public string name { get; set; }
-        public double internet_capacity { get; set; }
-        public int minutes { get; set; }
-        public string additional { get; set; }
-        public double price { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string? Id { get; set; }
+        [BsonElement("name")]
+        public string Name { get; set; }
+        [BsonElement("internet_capacity")]
+        public double Internet_capacity { get; set; }
+        [BsonElement("minutes")]
+        public int Minutes { get; set; }
+        [BsonElement("additional")]
+        public string Additional { get; set; }
+        [BsonElement("price")]
+        public double Price { get; set; }
     }
 }
