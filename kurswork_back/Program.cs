@@ -10,6 +10,9 @@ builder.Services.AddSingleton<MongoContext>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddScoped<ITarifRepository, TarifRepository>();
+builder.Services.AddScoped<ITarifService, TarifService>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -10,6 +10,7 @@ namespace kurswork_back.Repositories
         Task<Tarif?> GetByIdAsync(string id);
         Task CreateAsync(Tarif tarif);
         Task DeleteAsync(string id);
+        Task UpdateAsync(Tarif tarif);
     }
     public class TarifRepository : ITarifRepository
     {
@@ -39,6 +40,10 @@ namespace kurswork_back.Repositories
         public async Task DeleteAsync(string id)
         {
             await _tarifs.DeleteOneAsync(t => t.Id == id);
+        }
+        public async Task UpdateAsync(Tarif tarif)
+        {
+            await _tarifs.ReplaceOneAsync(t=>t.Id==tarif.Id,tarif);
         }
     }
 }

@@ -7,15 +7,13 @@ namespace kurswork_back.Services
         {
             // Отримати всіх користувачів
             Task<List<User>> GetAllAsync();
-
             // Отримати користувача по Id
             Task<User?> GetByIdAsync(string id);
-
             // Створити користувача
             Task CreateAsync(User user);
-
             // Видалити користувача
             Task DeleteAsync(string id);
+            Task<bool> UpdateAsync(string id, User user);
         }
     
     public class UserService : IUserService
@@ -74,6 +72,18 @@ namespace kurswork_back.Services
                 throw new ArgumentException("Id is empty");
 
             await _repository.DeleteAsync(id);
+        }
+        public async Task<bool> UpdateAsync(string id, User user)
+        {
+            var oldUser = GetByIdAsync(id);
+
+            if (oldUser == null)
+                return false;
+
+            user.Id = (oldUser.Id).ToString();
+
+            await _repository.UpdateAsync(user);
+            return true;
         }
     }
 }
