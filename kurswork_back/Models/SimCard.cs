@@ -6,6 +6,6 @@
         public string SimNumber { get; set; }
         public string Status { get; set; }
         public string CreatedAt { get; set; }
-        public Tarif Tarif { get; set; }
+        public string TarifId { get; set; }
     }
 }
