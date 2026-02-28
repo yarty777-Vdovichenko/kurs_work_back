@@ -25,6 +25,7 @@ namespace kurswork_back.Data
         public IMongoCollection<Tarif> Tarifs =>
             _database.GetCollection<Tarif>("tarifs");
 
-
+        public IMongoCollection<Subscriber> Subscribers =>
+            _database.GetCollection<Subscriber>("tarifs");
     }
 }

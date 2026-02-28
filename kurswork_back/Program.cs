@@ -13,6 +13,9 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITarifRepository, TarifRepository>();
 builder.Services.AddScoped<ITarifService, TarifService>();
 
+builder.Services.AddScoped<ISubscriberRepository, SubscriberRepository>();
+builder.Services.AddScoped<ISubscriberService, SubscriberService>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
