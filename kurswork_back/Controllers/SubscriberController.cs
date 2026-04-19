@@ -1,5 +1,6 @@
 ﻿using kurswork_back.Models;
 using kurswork_back.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace kurswork_back.Controllers
@@ -14,47 +15,98 @@ namespace kurswork_back.Controllers
         {
             _service = service;
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var subs = await _service.GetAllAsync();
+            try
+            {
+                var subs = await _service.GetAllAsync();
 
-            return Ok(subs);
+                return Ok(subs);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(string id)
         {
-            var sub = await _service.GetByIdAsync(id);
+            try
+            {
+                var sub = await _service.GetByIdAsync(id);
 
-            if (sub == null)
-                return NotFound();
+                if (sub == null)
+                    return NotFound();
 
-            return Ok(sub);
+                return Ok(sub);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Subscriber sub)
         {
-            await _service.CreateAsync(sub);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                await _service.CreateAsync(sub);
 
-            return Created();
+                return Created();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            
         }
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            await _service.DeleteAsync(id);
+            try
+            {
+                await _service.DeleteAsync(id);
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            
         }
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, [FromBody] Subscriber sub)
         {
-            var updated = await _service.UpdateAsync(id, sub);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var updated = await _service.UpdateAsync(id, sub);
 
-            if (!updated)
-                return NotFound();
+                if (!updated)
+                    return NotFound();
 
-            return NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            
         }
     }
 }

@@ -76,3 +76,11 @@ D:\kurswork_back\kurswork_back\obj\Debug\net8.0\staticwebassets.upToDateCheck.tx
 D:\kurswork_back\kurswork_back\obj\Debug\net8.0\kurswork.FFA44252.Up2Date
 D:\kurswork_back\kurswork_back\obj\Debug\net8.0\kurswork_back.genruntimeconfig.cache
 D:\kurswork_back\kurswork_back\obj\Debug\net8.0\ref\kurswork_back.dll
+D:\kurswork_back\kurswork_back\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\kurswork_back\kurswork_back\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\kurswork_back\kurswork_back\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\kurswork_back\kurswork_back\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\kurswork_back\kurswork_back\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\kurswork_back\kurswork_back\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\kurswork_back\kurswork_back\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\kurswork_back\kurswork_back\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

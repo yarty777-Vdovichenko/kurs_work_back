@@ -26,7 +26,7 @@ namespace kurswork_back.Services
         public async Task<Tarif?> GetByIdAsync(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
-                throw new ArgumentException("id is empty");
+                throw new ArgumentException("Пустий ід");
 
             return await _repository.GetByIdAsync(id);
         }
@@ -35,27 +35,12 @@ namespace kurswork_back.Services
             if (tarif == null)
                 throw new ArgumentNullException(nameof(tarif));
 
-            if (string.IsNullOrWhiteSpace(tarif.Name))
-                throw new Exception("WE NEED NAME!!!!!!!!!!!!");
-
-            if (tarif.Internet_capacity<0)
-                throw new Exception("WE NEED Internet_capacity!!!!!!!!!!!!");
-
-            if (tarif.Minutes>0)
-                throw new Exception("WE NEED Minutes!!!!!!!!!!!!");
-
-            if (string.IsNullOrWhiteSpace(tarif.Additional))
-                tarif.Additional = "NONE";
-
-            if (tarif.Price<0)
-                throw new Exception("WE NEED Price!!!!!!!!!!!!");
-
             await _repository.CreateAsync(tarif);
         }
         public async Task DeleteAsync(string id)
         {
             if(string.IsNullOrWhiteSpace(id))
-                throw new ArgumentException("id is empty");
+                throw new ArgumentException("Пустий ід");
 
             await _repository.DeleteAsync(id);
         }
