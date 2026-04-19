@@ -1,5 +1,6 @@
 ﻿using kurswork_back.Models;
 using kurswork_back.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,47 +16,99 @@ namespace kurswork_back.Controllers
         {
             _service = service;
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var tarifs = await _service.GetAllAsync();
+            try
+            {
+                var tarifs = await _service.GetAllAsync();
 
-            return Ok(tarifs);
+                return Ok(tarifs);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            
         }
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(string id)
         {
-            var tarif = await _service.GetByIdAsync(id);
+            try
+            {
+                var tarif = await _service.GetByIdAsync(id);
 
-            if (tarif == null)
-                return NotFound();
+                if (tarif == null)
+                    return NotFound();
 
-            return Ok(tarif);
+                return Ok(tarif);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Tarif tarif)
         {
-            await _service.CreateAsync(tarif);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                await _service.CreateAsync(tarif);
 
-            return Created();
+                return Created();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            
         }
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            await _service.DeleteAsync(id);
+            try
+            {
+                await _service.DeleteAsync(id);
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            
         }
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, [FromBody] Tarif tarif)
         {
-            var updated = await _service.UpdateAsync(id, tarif);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var updated = await _service.UpdateAsync(id, tarif);
 
-            if (!updated)
-                return NotFound();
+                if (!updated)
+                    return NotFound();
 
-            return NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            
         }
     }
 }
