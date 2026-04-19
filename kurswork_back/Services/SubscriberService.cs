@@ -26,14 +26,14 @@ namespace kurswork_back.Services
         public async Task<Subscriber?> GetByIdAsync(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
-                throw new ArgumentException("Id is empty");
+                throw new ArgumentException("Пустий ід");
 
             return await _repository.GetByIdAsync(id);
         }
         public async Task CreateAsync(Subscriber subscriber)
         {
             if (string.IsNullOrWhiteSpace(subscriber.FullName) || subscriber.FullName.Length < 4)
-                throw new ArgumentException("Name is too short");
+                throw new ArgumentException("Коротке ім'я");
 
             subscriber.CreatedAt = DateTime.UtcNow;
 
@@ -42,7 +42,7 @@ namespace kurswork_back.Services
         public async Task DeleteAsync(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
-                throw new ArgumentException("Id is empty");
+                throw new ArgumentException("Пустий ід");
 
             await _repository.DeleteAsync(id);
         }
