@@ -64,7 +64,13 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -132,6 +138,43 @@
         "Name": "sub",
         "Type": "kurswork_back.Models.Subscriber",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "kurswork_back.Controllers.SubscriberController",
+    "Method": "Filter",
+    "RelativePath": "api/subs/filter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "simStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "tarifId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "kurswork_back.Controllers.SubscriberController",
+    "Method": "Search",
+    "RelativePath": "api/subs/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fullName",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

@@ -5,7 +5,9 @@ namespace kurswork_back.Services
 {
     public interface ISubscriberService
     {
-        Task<List<Subscriber>> GetAllAsync();
+        Task<object> GetAllAsync(int page);
+        Task<List<Subscriber>> SearchAsync(string fullName);
+        Task<List<Subscriber>> FilterAsync(string? simStatus, string? tarifId);
         Task<Subscriber?> GetByIdAsync(string id);
         Task CreateAsync(Subscriber subscriber);
         Task DeleteAsync(string id);
@@ -19,9 +21,35 @@ namespace kurswork_back.Services
         {
             _repository = repository;
         }
-        public async Task<List<Subscriber>> GetAllAsync()
+
+        private const int PageSize = 10;
+
+        public async Task<object> GetAllAsync(int page)
         {
-            return await _repository.GetAllAsync();
+            if (page < 1) page = 1;
+            var (items, total) = await _repository.GetAllPagedAsync(page, PageSize);
+            return new
+            {
+                items,
+                totalCount = total,
+                page,
+                pageSize = PageSize,
+                totalPages = (int)Math.Ceiling((double)total / PageSize)
+            };
+        }
+
+        public async Task<List<Subscriber>> SearchAsync(string fullName)
+        {
+            if (string.IsNullOrWhiteSpace(fullName))
+                throw new ArgumentException("Введіть ім'я для пошуку");
+            return await _repository.SearchByNameAsync(fullName);
+        }
+
+        public async Task<List<Subscriber>> FilterAsync(string? simStatus, string? tarifId)
+        {
+            if (string.IsNullOrWhiteSpace(simStatus) && string.IsNullOrWhiteSpace(tarifId))
+                throw new ArgumentException("Вкажіть хоча б один фільтр");
+            return await _repository.FilterAsync(simStatus, tarifId);
         }
         public async Task<Subscriber?> GetByIdAsync(string id)
         {

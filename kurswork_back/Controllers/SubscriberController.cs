@@ -17,13 +17,42 @@ namespace kurswork_back.Controllers
         }
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1)
         {
             try
             {
-                var subs = await _service.GetAllAsync();
-
-                return Ok(subs);
+                var result = await _service.GetAllAsync(page);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+        [Authorize]
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] string fullName)
+        {
+            try
+            {
+                var result = await _service.SearchAsync(fullName);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+        [Authorize]
+        [HttpGet("filter")]
+        public async Task<IActionResult> Filter(
+            [FromQuery] string? simStatus = null,
+            [FromQuery] string? tarifId = null)
+        {
+            try
+            {
+                var result = await _service.FilterAsync(simStatus, tarifId);
+                return Ok(result);
             }
             catch (Exception ex)
             {
