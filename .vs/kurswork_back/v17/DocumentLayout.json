@@ -82,8 +82,7 @@
               "RelativeToolTip": "kurswork_back\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T11:27:48.703Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-19T11:27:48.703Z"
             },
             {
               "$type": "Document",
@@ -95,8 +94,7 @@
               "RelativeToolTip": "kurswork_back\\DTOs\\RefreshRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T11:10:38.769Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-19T11:10:38.769Z"
             },
             {
               "$type": "Document",
@@ -108,8 +106,7 @@
               "RelativeToolTip": "kurswork_back\\Controllers\\TarifController.cs",
               "ViewState": "AgIAAEsAAAAAAAAAAAA7wGAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T10:18:17.35Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-19T10:18:17.35Z"
             },
             {
               "$type": "Document",
@@ -121,8 +118,7 @@
               "RelativeToolTip": "kurswork_back\\Services\\TarifService.cs",
               "ViewState": "AgIAABYAAAAAAAAAAADwvyYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T10:11:03.884Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-19T10:11:03.884Z"
             },
             {
               "$type": "Document",
@@ -134,8 +130,7 @@
               "RelativeToolTip": "kurswork_back\\Controllers\\UsersController.cs",
               "ViewState": "AgIAAH0AAAAAAAAAAADwv4QAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-11T15:17:32.505Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-11T15:17:32.505Z"
             },
             {
               "$type": "Document",
@@ -147,8 +142,7 @@
               "RelativeToolTip": "kurswork_back\\Services\\JwtService.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAkwBoAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-11T15:16:20.028Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-11T15:16:20.028Z"
             },
             {
               "$type": "Document",
@@ -185,8 +179,7 @@
               "RelativeToolTip": "kurswork_back\\Controllers\\SubscriberController.cs",
               "ViewState": "AgIAAD4AAAAAAAAAAAAswEEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-11T14:40:21.659Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-11T14:40:21.659Z"
             },
             {
               "$type": "Document",
@@ -198,8 +191,7 @@
               "RelativeToolTip": "kurswork_back\\Models\\Tarif.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T15:05:29.239Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-06T15:05:29.239Z"
             },
             {
               "$type": "Document",
