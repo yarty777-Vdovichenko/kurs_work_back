@@ -5,9 +5,8 @@ namespace kurswork_back.Models
 {
     public class SimCard
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
+        [BsonElement("id")]
+        public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
         [BsonElement("SimNumber")]
         public string SimNumber { get; set; }
         [BsonElement("Status")]

@@ -16,13 +16,15 @@ namespace kurswork_back.Services
     public class SubscriberService : ISubscriberService
     {
         private readonly ISubscriberRepository _repository;
+        private readonly ITarifRepository _tarifRepository;
 
-        public SubscriberService(ISubscriberRepository repository)
+        public SubscriberService(ISubscriberRepository repository, ITarifRepository tarifRepository)
         {
             _repository = repository;
+            _tarifRepository = tarifRepository;
         }
 
-        private const int PageSize = 10;
+        private const int PageSize = 4;
 
         public async Task<object> GetAllAsync(int page)
         {
@@ -62,6 +64,16 @@ namespace kurswork_back.Services
         {
             if (string.IsNullOrWhiteSpace(subscriber.FullName) || subscriber.FullName.Length < 4)
                 throw new ArgumentException("Коротке ім'я");
+
+            if (subscriber.Sims != null)
+            {
+                foreach (var sim in subscriber.Sims)
+                {
+                    var tarif = await _tarifRepository.GetByIdAsync(sim.TarifId);
+                    if (tarif == null)
+                        throw new ArgumentException($"Тариф з id '{sim.TarifId}' не існує");
+                }
+            }
 
             subscriber.CreatedAt = DateTime.UtcNow;
 
