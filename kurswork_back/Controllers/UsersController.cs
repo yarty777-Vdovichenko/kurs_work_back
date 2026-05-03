@@ -7,16 +7,25 @@ using System.Security.Claims;
 
 namespace kurswork_back.Controllers
 {
+
     [ApiController]
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
+        public bool CanManageUser(string currentRole, string targetRole)
+        {
+            if (currentRole == Roles.Manager) return true;
+
+            if (currentRole == Roles.Admin && targetRole == Roles.Manager) return false;
+
+            return true;
+        }
         private readonly IUserService _userService;
         public UsersController(IUserService userService)
         {
             _userService = userService;
         }
-        [Authorize]
+        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -38,9 +47,9 @@ namespace kurswork_back.Controllers
             {
                 return BadRequest(new { message = ex.Message });
             }
-            
+
         }
-        [Authorize]
+        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(string id)
         {
@@ -66,10 +75,10 @@ namespace kurswork_back.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-        [Authorize]
+        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateUserDto user)
-        {           
+        {
             try
             {
                 await _userService.CreateAsync(user);
@@ -80,17 +89,22 @@ namespace kurswork_back.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-        [Authorize]
+        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
             try
             {
+                var currentUserRole = User.FindFirstValue(ClaimTypes.Role);
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var targetUser = await _userService.GetByIdAsync(id);
 
                 if (currentUserId == id)
                     return BadRequest(new { message = "Не можна видалити свій власний акаунт" });
-    
+
+                if (!CanManageUser(currentUserRole!, targetUser.Role))
+                    return Forbid();
+
                 await _userService.DeleteAsync(id);
                 return NoContent();
             }
@@ -99,13 +113,21 @@ namespace kurswork_back.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-        [Authorize]
+        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id,[FromBody] CreateUserDto user)
+        public async Task<IActionResult> Update(string id, [FromBody] CreateUserDto user)
         {
             try
             {
+                var currentUserRole = User.FindFirstValue(ClaimTypes.Role);
+                var targetUser = await _userService.GetByIdAsync(id);
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                if (!CanManageUser(currentUserRole!, targetUser.Role))
+                    return Forbid();
+
+                if (!CanManageUser(currentUserRole!, user.Role))
+                    return Forbid();
 
                 if (currentUserId == id)
                 {
@@ -126,14 +148,22 @@ namespace kurswork_back.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-        [Authorize]
+        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
         [HttpPatch("{id}")]
         public async Task<IActionResult> Patch(string id, [FromBody] UpdateUserDto dto)
         {
 
             try
             {
+                var currentUserRole = User.FindFirstValue(ClaimTypes.Role);
+                var targetUser = await _userService.GetByIdAsync(id);
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                if (!CanManageUser(currentUserRole!, targetUser.Role))
+                    return Forbid();
+
+                if (!CanManageUser(currentUserRole!, dto.Role))
+                    return Forbid();
 
                 if (currentUserId == id && !string.IsNullOrWhiteSpace(dto.Role))
                 {

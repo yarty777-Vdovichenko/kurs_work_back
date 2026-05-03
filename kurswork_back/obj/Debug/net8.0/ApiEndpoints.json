@@ -144,6 +144,111 @@
   },
   {
     "ContainingType": "kurswork_back.Controllers.SubscriberController",
+    "Method": "GetSims",
+    "RelativePath": "api/subs/{id}/sims",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "kurswork_back.Controllers.SubscriberController",
+    "Method": "AddSim",
+    "RelativePath": "api/subs/{id}/sims",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "kurswork_back.DTOs.CreateSimDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "kurswork_back.Controllers.SubscriberController",
+    "Method": "GetSim",
+    "RelativePath": "api/subs/{id}/sims/{simId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "simId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "kurswork_back.Controllers.SubscriberController",
+    "Method": "UpdateSim",
+    "RelativePath": "api/subs/{id}/sims/{simId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "simId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "kurswork_back.DTOs.UpdateSimDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "kurswork_back.Controllers.SubscriberController",
+    "Method": "DeleteSim",
+    "RelativePath": "api/subs/{id}/sims/{simId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "simId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "kurswork_back.Controllers.SubscriberController",
     "Method": "Filter",
     "RelativePath": "api/subs/filter",
     "HttpMethod": "GET",
@@ -158,6 +263,11 @@
       {
         "Name": "tarifId",
         "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
         "IsRequired": false
       }
     ],
@@ -174,6 +284,16 @@
       {
         "Name": "fullName",
         "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "number",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
         "IsRequired": false
       }
     ],

@@ -8,12 +8,14 @@ namespace kurswork_back.Repositories
     public interface ISubscriberRepository
     {
         Task<(List<Subscriber> items, long total)> GetAllPagedAsync(int page, int pageSize);
-        Task<List<Subscriber>> SearchByNameAsync(string fullName);
-        Task<List<Subscriber>> FilterAsync(string? simStatus, string? tarifId);
+        Task<(List<Subscriber>, long)> SearchPagedAsync(string number, string fullName, int page, int pageSize);
+        Task<(List<Subscriber>, long)> FilterPagedAsync(string? simStatus, string? tarifId, int page, int pageSize);
         Task<Subscriber?> GetByIdAsync(string id);
         Task CreateAsync(Subscriber subscriber);
         Task DeleteAsync(string id);
         Task UpdateAsync(Subscriber subscriber);
+        Task<bool> SimNumberExistsAsync(string simNumber);
+
     }
     public class SubscriberRepository : ISubscriberRepository
     {
@@ -22,6 +24,12 @@ namespace kurswork_back.Repositories
         {
             _subscribers = context.Subscribers;
         }
+        public async Task<bool> SimNumberExistsAsync(string simNumber)
+        {
+            var filter = Builders<Subscriber>.Filter
+                .ElemMatch(s => s.Sims, sim => sim.SimNumber == simNumber);
+            return await _subscribers.Find(filter).AnyAsync();
+        }
         public async Task<(List<Subscriber> items, long total)> GetAllPagedAsync(int page, int pageSize)
         {
             var total = await _subscribers.CountDocumentsAsync(_ => true);
@@ -29,13 +37,45 @@ namespace kurswork_back.Repositories
             return (items, total);
         }
 
-        public async Task<List<Subscriber>> SearchByNameAsync(string fullName)
+        public async Task<(List<Subscriber>, long)> SearchPagedAsync(
+        string number,
+        string fullName,
+        int page,
+        int pageSize)
         {
-            var filter = Builders<Subscriber>.Filter.Regex(s => s.FullName, new BsonRegularExpression(fullName, "i"));
-            return await _subscribers.Find(filter).ToListAsync();
+
+            var filterBuilder = Builders<Subscriber>.Filter;
+            var filter = filterBuilder.Empty;
+
+            if (!string.IsNullOrWhiteSpace(fullName))
+            {
+                filter &= filterBuilder.Regex(
+                    s => s.FullName,
+                    new BsonRegularExpression(fullName, "i")
+                );
+            }
+
+            if (!string.IsNullOrWhiteSpace(number))
+            {
+                number = number.Replace("+", "").Replace(" ", "");
+                filter &= filterBuilder.ElemMatch(
+                    s => s.Sims,
+                    sim => sim.SimNumber.Contains(number)
+                );
+            }
+
+            var total = await _subscribers.CountDocumentsAsync(filter);
+
+            var items = await _subscribers
+                .Find(filter)
+                .Skip((page - 1) * pageSize)
+                .Limit(pageSize)
+                .ToListAsync();
+
+            return (items, total);
         }
 
-        public async Task<List<Subscriber>> FilterAsync(string? simStatus, string? tarifId)
+        public async Task<(List<Subscriber>, long)> FilterPagedAsync(string? simStatus, string? tarifId, int page, int pageSize)
         {
             var filterBuilder = Builders<Subscriber>.Filter;
             var filter = filterBuilder.Empty;
@@ -46,7 +86,15 @@ namespace kurswork_back.Repositories
             if (!string.IsNullOrWhiteSpace(tarifId))
                 filter &= filterBuilder.ElemMatch(s => s.Sims, sim => sim.TarifId == tarifId);
 
-            return await _subscribers.Find(filter).ToListAsync();
+            var total = await _subscribers.CountDocumentsAsync(filter);
+
+            var items = await _subscribers
+                .Find(filter)
+                .Skip((page - 1) * pageSize)
+                .Limit(pageSize)
+                .ToListAsync();
+
+            return (items, total);
         }
         public async Task<Subscriber?> GetByIdAsync(string id)
         {
