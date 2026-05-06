@@ -300,6 +300,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "kurswork_back.Controllers.SubscriberController",
+    "Method": "GetStats",
+    "RelativePath": "api/subs/stats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "kurswork_back.Controllers.TarifController",
     "Method": "GetAll",
     "RelativePath": "api/tarifs",

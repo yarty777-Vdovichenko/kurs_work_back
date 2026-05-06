@@ -12,7 +12,7 @@ namespace kurswork_back.Controllers
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
-        public bool CanManageUser(string currentRole, string targetRole)
+        private bool CanManageUser(string currentRole, string targetRole)
         {
             if (currentRole == Roles.Manager) return true;
 

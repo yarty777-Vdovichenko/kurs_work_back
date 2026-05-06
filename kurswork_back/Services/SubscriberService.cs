@@ -18,8 +18,9 @@ namespace kurswork_back.Services
         Task<SimCard?> GetSimAsync(string subscriberId, string simId);
         Task<bool> UpdateSimAsync(string subscriberId, string simId, UpdateSimDto dto);
         Task<bool> DeleteSimAsync(string subscriberId, string simId);
-
+        Task<object> GetStatsAsync();
     }
+
     public class SubscriberService : ISubscriberService
     {
         private readonly ISubscriberRepository _repository;
@@ -47,6 +48,7 @@ namespace kurswork_back.Services
 
             return number;
         }
+
         public async Task<object> GetAllAsync(int page)
         {
             if (page < 1) page = 1;
@@ -61,14 +63,14 @@ namespace kurswork_back.Services
             };
         }
 
-        public async Task<object> SearchAsync(string number,string fullName, int page)
+        public async Task<object> SearchAsync(string number, string fullName, int page)
         {
             if (string.IsNullOrWhiteSpace(fullName) && string.IsNullOrWhiteSpace(number))
                 throw new ArgumentException("Введіть ім'я або номер для пошуку");
 
             if (page < 1) page = 1;
 
-            var (items, total) = await _repository.SearchPagedAsync(number,fullName, page, PageSize);
+            var (items, total) = await _repository.SearchPagedAsync(number, fullName, page, PageSize);
 
             return new
             {
@@ -98,6 +100,7 @@ namespace kurswork_back.Services
                 totalPages = (int)Math.Ceiling((double)total / PageSize)
             };
         }
+
         public async Task<Subscriber?> GetByIdAsync(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -105,6 +108,7 @@ namespace kurswork_back.Services
 
             return await _repository.GetByIdAsync(id);
         }
+
         public async Task CreateAsync(Subscriber subscriber)
         {
             if (string.IsNullOrWhiteSpace(subscriber.FullName) || subscriber.FullName.Length < 4)
@@ -124,6 +128,7 @@ namespace kurswork_back.Services
 
             await _repository.CreateAsync(subscriber);
         }
+
         public async Task<bool> AddSimAsync(string subscriberId, CreateSimDto dto)
         {
             var subscriber = await _repository.GetByIdAsync(subscriberId);
@@ -148,6 +153,7 @@ namespace kurswork_back.Services
 
             return true;
         }
+
         public async Task<SimCard?> GetSimAsync(string subscriberId, string simId)
         {
             var subscriber = await _repository.GetByIdAsync(subscriberId);
@@ -157,6 +163,7 @@ namespace kurswork_back.Services
 
             return subscriber.Sims.FirstOrDefault(s => s.Id == simId);
         }
+
         public async Task<bool> UpdateSimAsync(string subscriberId, string simId, UpdateSimDto dto)
         {
             var subscriber = await _repository.GetByIdAsync(subscriberId);
@@ -176,6 +183,7 @@ namespace kurswork_back.Services
 
             return true;
         }
+
         public async Task<bool> DeleteSimAsync(string subscriberId, string simId)
         {
             var subscriber = await _repository.GetByIdAsync(subscriberId);
@@ -194,6 +202,7 @@ namespace kurswork_back.Services
 
             return true;
         }
+
         public async Task DeleteAsync(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -201,6 +210,7 @@ namespace kurswork_back.Services
 
             await _repository.DeleteAsync(id);
         }
+
         public async Task<bool> UpdateAsync(string id, Subscriber newSubscriber)
         {
             var sub = await _repository.GetByIdAsync(id);
@@ -212,6 +222,24 @@ namespace kurswork_back.Services
 
             await _repository.UpdateAsync(newSubscriber);
             return true;
+        }
+
+        public async Task<object> GetStatsAsync()
+        {
+            var totalSubscribers = await _repository.CountSubscribersAsync();
+            var activeSims = await _repository.CountSimsByStatusAsync("active");
+            var blockedSims = await _repository.CountSimsByStatusAsync("blocked");
+            var newLast7Days = await _repository.CountNewSubscribersAsync(7);
+            var totalTarifs = await _tarifRepository.CountAsync();
+
+            return new
+            {
+                totalSubscribers,
+                activeSims,
+                blockedSims,
+                newSubscribersLast7Days = newLast7Days,
+                totalTarifs
+            };
         }
     }
 }

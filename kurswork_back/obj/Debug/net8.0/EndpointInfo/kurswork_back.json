@@ -110,6 +110,18 @@
         }
       }
     },
+    "/api/subs/stats": {
+      "get": {
+        "tags": [
+          "Subscriber"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/subs": {
       "get": {
         "tags": [

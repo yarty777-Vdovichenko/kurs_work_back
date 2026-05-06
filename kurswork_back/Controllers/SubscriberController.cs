@@ -16,6 +16,22 @@ namespace kurswork_back.Controllers
         {
             _service = service;
         }
+
+        [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
+        [HttpGet("stats")]
+        public async Task<IActionResult> GetStats()
+        {
+            try
+            {
+                var result = await _service.GetStatsAsync();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
         [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] int page = 1)
@@ -30,16 +46,14 @@ namespace kurswork_back.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
         [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
         [HttpGet("search")]
-        public async Task<IActionResult> Search(
-            [FromQuery] string fullName,
-            [FromQuery] string number,
-            [FromQuery] int page = 1)
+        public async Task<IActionResult> Search([FromQuery] string fullName, [FromQuery] string number, [FromQuery] int page = 1)
         {
             try
             {
-                var result = await _service.SearchAsync(number,fullName, page);
+                var result = await _service.SearchAsync(number, fullName, page);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -47,12 +61,10 @@ namespace kurswork_back.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
         [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
         [HttpGet("filter")]
-        public async Task<IActionResult> Filter(
-        [FromQuery] string? simStatus = null,
-        [FromQuery] string? tarifId = null,
-        [FromQuery] int page = 1)
+        public async Task<IActionResult> Filter([FromQuery] string? simStatus = null, [FromQuery] string? tarifId = null, [FromQuery] int page = 1)
         {
             try
             {
@@ -64,6 +76,7 @@ namespace kurswork_back.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
         [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(string id)
@@ -81,28 +94,26 @@ namespace kurswork_back.Controllers
             {
                 return BadRequest(new { message = ex.Message });
             }
-            
         }
+
         [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Subscriber sub)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
+
             try
             {
                 await _service.CreateAsync(sub);
-
                 return Created();
             }
             catch (Exception ex)
             {
                 return BadRequest(new { message = ex.Message });
             }
-            
         }
+
         [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
         [HttpGet("{id}/sims")]
         public async Task<IActionResult> GetSims(string id)
@@ -121,6 +132,7 @@ namespace kurswork_back.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
         [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
         [HttpGet("{id}/sims/{simId}")]
         public async Task<IActionResult> GetSim(string id, string simId)
@@ -139,6 +151,7 @@ namespace kurswork_back.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
         [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
         [HttpPut("{id}/sims/{simId}")]
         public async Task<IActionResult> UpdateSim(string id, string simId, [FromBody] UpdateSimDto dto)
@@ -157,6 +170,7 @@ namespace kurswork_back.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
         [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
         [HttpDelete("{id}/sims/{simId}")]
         public async Task<IActionResult> DeleteSim(string id, string simId)
@@ -175,6 +189,7 @@ namespace kurswork_back.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
         [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
         [HttpPost("{id}/sims")]
         public async Task<IActionResult> AddSim(string id, [FromBody] CreateSimDto dto)
@@ -193,6 +208,7 @@ namespace kurswork_back.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
         [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
@@ -200,23 +216,21 @@ namespace kurswork_back.Controllers
             try
             {
                 await _service.DeleteAsync(id);
-
                 return Ok();
             }
             catch (Exception ex)
             {
                 return BadRequest(new { message = ex.Message });
             }
-            
         }
+
         [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, [FromBody] Subscriber sub)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
+
             try
             {
                 var updated = await _service.UpdateAsync(id, sub);
@@ -230,7 +244,6 @@ namespace kurswork_back.Controllers
             {
                 return BadRequest(new { message = ex.Message });
             }
-            
         }
     }
 }
