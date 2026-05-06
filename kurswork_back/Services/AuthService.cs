@@ -42,7 +42,7 @@ namespace kurswork_back.Services
             {
                 throw new Exception("Короткий пароль");
             }
-            if(dto.Role!="Meneger"&&dto.Role!="Admin"&&dto.Role!="User")
+            if(dto.Role!= "Manager" && dto.Role!="Admin"&&dto.Role!="User")
             {
                 throw new Exception("Не чітери)");
             }
@@ -109,6 +109,7 @@ namespace kurswork_back.Services
             {
                 AccessToken = accessToken,
                 RefreshToken = refreshToken,
+                Role = user.Role,
                 User = new UserDto
                 {
                     Id = user.Id!,

@@ -43,7 +43,6 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddSingleton<MongoContext>();
-// Add services to the container.
 
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IAuthService, AuthService>();
