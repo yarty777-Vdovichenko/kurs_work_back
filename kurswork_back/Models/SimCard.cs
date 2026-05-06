@@ -5,15 +5,14 @@ namespace kurswork_back.Models
 {
     public class SimCard
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
+        [BsonElement("id")]
+        public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
         [BsonElement("SimNumber")]
-        public string SimNumber { get; set; }
+        public string? SimNumber { get; set; }
         [BsonElement("Status")]
-        public string Status { get; set; }
+        public string? Status { get; set; } = "active";
         [BsonElement("CreatedAt")]
-        public string CreatedAt { get; set; }
+        public string? CreatedAt { get; set; }
         [BsonElement("TarifId")]
         public string TarifId { get; set; }
     }

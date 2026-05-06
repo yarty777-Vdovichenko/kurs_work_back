@@ -9,11 +9,11 @@ namespace kurswork_back.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
-        [BsonElement("FullName")]
+        [BsonElement("name")]
         public string FullName { get; set; }
-        [BsonElement("CreatedAt")]
+        [BsonElement("createdat")]
         public DateTime CreatedAt { get; set; }
-        [BsonElement("Sims")]
+        [BsonElement("sims")]
         public List<SimCard> Sims { get; set; }
     }
 }

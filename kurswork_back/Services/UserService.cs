@@ -1,6 +1,7 @@
-﻿using kurswork_back.Repositories;
+﻿using kurswork_back.DTOs;
 using kurswork_back.Models;
-using kurswork_back.DTOs;
+using kurswork_back.Repositories;
+using System.Data;
 
 namespace kurswork_back.Services
 {
@@ -23,6 +24,7 @@ namespace kurswork_back.Services
             _repository = repository;
             _passwordHasher = hasher;
         }
+        
         public async Task<List<User>> GetAllAsync()
         {
             return await _repository.GetAllAsync();
@@ -53,7 +55,7 @@ namespace kurswork_back.Services
             if (string.IsNullOrWhiteSpace(user.Name))
                 throw new Exception("Ім'я обов'язкове");
 
-            if (user.Role != "Meneger" && user.Role != "Admin" && user.Role != "User")
+            if (user.Role != "Manager" && user.Role != "Admin" && user.Role != "User")
                 throw new Exception("Є тільки 3 ролі:User,Meneger,Admin");
             
             var userOK = new User
@@ -111,7 +113,7 @@ namespace kurswork_back.Services
 
             if (!string.IsNullOrWhiteSpace(dto.Role))
             {
-                if (dto.Role != "Meneger" && dto.Role != "Admin" && dto.Role != "User")
+                if (dto.Role != "Manager" && dto.Role != "Admin" && dto.Role != "User")
                     throw new Exception("Є тільки 3 ролі: User, Meneger, Admin");
                 user.Role = dto.Role;
             }
