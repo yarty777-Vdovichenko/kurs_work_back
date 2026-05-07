@@ -1,9 +1,11 @@
-﻿using kurswork_back.DTOs;
+﻿using kurswork_back.Data;
+using kurswork_back.DTOs;
 using kurswork_back.Models;
 using kurswork_back.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using MongoDB.Driver;
 
 namespace kurswork_back.Controllers
 {
@@ -12,18 +14,20 @@ namespace kurswork_back.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
+        private readonly IRegistrationRequestService _registrationRequestService;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, IRegistrationRequestService registrationRequestService)
         {
             _authService = authService;
+            _registrationRequestService = registrationRequestService;
         }
-
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto dto)
         {
-            try {
-                var result = await _authService.RegisterAsync(dto);
-                return Ok(result);
+            try
+            {
+                await _registrationRequestService.CreateRequestAsync(dto);
+                return Ok(new { message = "Заявку надіслано. Очікуйте підтвердження менеджера." });
             }
             catch (Exception ex)
             {

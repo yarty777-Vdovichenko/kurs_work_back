@@ -27,5 +27,8 @@ namespace kurswork_back.Data
 
         public IMongoCollection<Subscriber> Subscribers =>
             _database.GetCollection<Subscriber>("subscribers");
+
+        public IMongoCollection<RegistrationRequest> RegistrationRequests =>
+            _database.GetCollection<RegistrationRequest>("registration_requests");
     }
 }

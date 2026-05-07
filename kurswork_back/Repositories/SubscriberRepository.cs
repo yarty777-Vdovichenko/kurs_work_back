@@ -39,11 +39,15 @@ namespace kurswork_back.Repositories
         public async Task<(List<Subscriber> items, long total)> GetAllPagedAsync(int page, int pageSize)
         {
             var total = await _subscribers.CountDocumentsAsync(_ => true);
-            var items = await _subscribers.Find(_ => true).Skip((page - 1) * pageSize).Limit(pageSize).ToListAsync();
+            var items = await _subscribers.Find(_ => true)
+                .Skip((page - 1) * pageSize)
+                .Limit(pageSize)
+                .ToListAsync();
             return (items, total);
         }
 
-        public async Task<(List<Subscriber>, long)> SearchPagedAsync(string number, string fullName, int page, int pageSize)
+        public async Task<(List<Subscriber>, long)> SearchPagedAsync(
+            string number, string fullName, int page, int pageSize)
         {
             var filterBuilder = Builders<Subscriber>.Filter;
             var filter = filterBuilder.Empty;
@@ -59,19 +63,28 @@ namespace kurswork_back.Repositories
             if (!string.IsNullOrWhiteSpace(number))
             {
                 number = number.Replace("+", "").Replace(" ", "");
+
+                // ВИПРАВЛЕНО: було sim.SimNumber.Contains(number) — не працює в MongoDB
                 filter &= filterBuilder.ElemMatch(
                     s => s.Sims,
-                    sim => sim.SimNumber.Contains(number)
+                    Builders<SimCard>.Filter.Regex(
+                        sim => sim.SimNumber,
+                        new BsonRegularExpression(number, "i")
+                    )
                 );
             }
 
             var total = await _subscribers.CountDocumentsAsync(filter);
-            var items = await _subscribers.Find(filter).Skip((page - 1) * pageSize).Limit(pageSize).ToListAsync();
+            var items = await _subscribers.Find(filter)
+                .Skip((page - 1) * pageSize)
+                .Limit(pageSize)
+                .ToListAsync();
 
             return (items, total);
         }
 
-        public async Task<(List<Subscriber>, long)> FilterPagedAsync(string? simStatus, string? tarifId, int page, int pageSize)
+        public async Task<(List<Subscriber>, long)> FilterPagedAsync(
+            string? simStatus, string? tarifId, int page, int pageSize)
         {
             var filterBuilder = Builders<Subscriber>.Filter;
             var filter = filterBuilder.Empty;
@@ -83,14 +96,19 @@ namespace kurswork_back.Repositories
                 filter &= filterBuilder.ElemMatch(s => s.Sims, sim => sim.TarifId == tarifId);
 
             var total = await _subscribers.CountDocumentsAsync(filter);
-            var items = await _subscribers.Find(filter).Skip((page - 1) * pageSize).Limit(pageSize).ToListAsync();
+            var items = await _subscribers.Find(filter)
+                .Skip((page - 1) * pageSize)
+                .Limit(pageSize)
+                .ToListAsync();
 
             return (items, total);
         }
 
         public async Task<Subscriber?> GetByIdAsync(string id)
         {
-            return await _subscribers.Find(subscriber => subscriber.Id == id).FirstOrDefaultAsync();
+            return await _subscribers
+                .Find(subscriber => subscriber.Id == id)
+                .FirstOrDefaultAsync();
         }
 
         public async Task CreateAsync(Subscriber subscriber)

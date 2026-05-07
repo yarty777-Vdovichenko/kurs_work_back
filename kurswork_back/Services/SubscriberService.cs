@@ -121,8 +121,8 @@ namespace kurswork_back.Services
                 foreach (var sim in subscriber.Sims)
                 {
                     sim.SimNumber = await GenerateUniqueSimNumberAsync();
-                    if (string.IsNullOrWhiteSpace(sim.CreatedAt))
-                        sim.CreatedAt = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+                    if (sim.CreatedAt == default)
+                        sim.CreatedAt = DateTime.UtcNow;  // було .ToString("...")
                 }
             }
 
@@ -141,14 +141,13 @@ namespace kurswork_back.Services
                 Id = ObjectId.GenerateNewId().ToString(),
                 SimNumber = await GenerateUniqueSimNumberAsync(),
                 TarifId = dto.TarifId,
-                CreatedAt = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")
+                CreatedAt = DateTime.UtcNow  // було .ToString("...")
             };
 
             if (subscriber.Sims == null)
                 subscriber.Sims = new List<SimCard>();
 
             subscriber.Sims.Add(newSim);
-
             await _repository.UpdateAsync(subscriber);
 
             return true;
@@ -180,7 +179,6 @@ namespace kurswork_back.Services
             sim.TarifId = dto.TarifId;
 
             await _repository.UpdateAsync(subscriber);
-
             return true;
         }
 
@@ -197,7 +195,6 @@ namespace kurswork_back.Services
                 return false;
 
             subscriber.Sims.Remove(sim);
-
             await _repository.UpdateAsync(subscriber);
 
             return true;
@@ -219,7 +216,6 @@ namespace kurswork_back.Services
                 return false;
 
             newSubscriber.Id = id;
-
             await _repository.UpdateAsync(newSubscriber);
             return true;
         }

@@ -58,6 +58,54 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "kurswork_back.Controllers.RegistrationRequestsController",
+    "Method": "GetAll",
+    "RelativePath": "api/registration-requests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "kurswork_back.Controllers.RegistrationRequestsController",
+    "Method": "Approve",
+    "RelativePath": "api/registration-requests/{id}/approve",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "kurswork_back.Controllers.RegistrationRequestsController",
+    "Method": "Reject",
+    "RelativePath": "api/registration-requests/{id}/reject",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "kurswork_back.Controllers.SubscriberController",
     "Method": "GetAll",
     "RelativePath": "api/subs",
