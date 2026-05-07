@@ -49,7 +49,7 @@ namespace kurswork_back.Controllers
 
         [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
         [HttpGet("search")]
-        public async Task<IActionResult> Search([FromQuery] string fullName, [FromQuery] string number, [FromQuery] int page = 1)
+        public async Task<IActionResult> Search([FromQuery] string? fullName, [FromQuery] string? number, [FromQuery] int page = 1)
         {
             try
             {

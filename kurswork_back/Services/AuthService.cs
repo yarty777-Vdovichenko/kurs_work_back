@@ -6,7 +6,6 @@ namespace kurswork_back.Services
 {
     public interface IAuthService
     {
-        Task<AuthResponseDto> RegisterAsync(RegisterDto dto);
         Task<AuthResponseDto> LoginAsync(LoginDto dto);
         Task<AuthResponseDto> RefreshAsync(string refreshToken);
         Task LogoutAsync(string userId);
@@ -23,40 +22,6 @@ namespace kurswork_back.Services
             _userRepository = userRepository;
             _jwtService = jwtService;
             _passwordHasher = passwordHasher;
-        }
-
-        public async Task<AuthResponseDto> RegisterAsync(RegisterDto dto)
-        {
-            var existingUser = await _userRepository.GetByEmailAsync(dto.Email);
-            if (existingUser != null)
-                throw new Exception("Користувач вже існує");
-            if (!dto.Email.Contains("@")|| !dto.Email.Contains("."))
-            {
-                throw new Exception("Неправильний мейл");
-            }
-            if (dto.Name.Length < 5)
-            {
-                throw new Exception("Коротке ім'я");
-            }
-            if (dto.Password.Length < 6)
-            {
-                throw new Exception("Короткий пароль");
-            }
-            if(dto.Role!= "Manager" && dto.Role!="Admin"&&dto.Role!="User")
-            {
-                throw new Exception("Не чітери)");
-            }
-            var user = new User
-            {
-                Name = dto.Name,
-                Email = dto.Email,
-                PasswordHash = _passwordHasher.HashPassword(dto.Password),
-                Role = dto.Role
-            };
-
-            await _userRepository.CreateAsync(user);
-
-            return await GenerateTokensAsync(user);
         }
 
         public async Task<AuthResponseDto> LoginAsync(LoginDto dto)
