@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\kurswork_back\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -39,19 +43,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\appsettings.json",
+              "RelativeDocumentMoniker": "kurswork_back\\appsettings.json",
+              "ToolTip": "D:\\kurswork_back\\kurswork_back\\appsettings.json",
+              "RelativeToolTip": "kurswork_back\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-07T12:50:26.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "kurswork_back\\Controllers\\AuthController.cs",
               "ToolTip": "D:\\kurswork_back\\kurswork_back\\Controllers\\AuthController.cs",
               "RelativeToolTip": "kurswork_back\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T09:38:49.066Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T09:38:49.066Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "RegistrationRequestsController.cs",
               "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Controllers\\RegistrationRequestsController.cs",
               "RelativeDocumentMoniker": "kurswork_back\\Controllers\\RegistrationRequestsController.cs",
@@ -63,7 +79,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "RegistrationRequestService.cs",
               "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Services\\RegistrationRequestService.cs",
               "RelativeDocumentMoniker": "kurswork_back\\Services\\RegistrationRequestService.cs",
@@ -75,7 +91,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "RegistrationRequestRepository.cs",
               "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Repositories\\RegistrationRequestRepository.cs",
               "RelativeDocumentMoniker": "kurswork_back\\Repositories\\RegistrationRequestRepository.cs",
