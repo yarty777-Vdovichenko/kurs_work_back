@@ -110,6 +110,71 @@
         }
       }
     },
+    "/api/registration-requests": {
+      "get": {
+        "tags": [
+          "RegistrationRequests"
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/registration-requests/{id}/approve": {
+      "post": {
+        "tags": [
+          "RegistrationRequests"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/registration-requests/{id}/reject": {
+      "post": {
+        "tags": [
+          "RegistrationRequests"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/subs/stats": {
       "get": {
         "tags": [
@@ -880,7 +945,7 @@
           },
           "createdAt": {
             "type": "string",
-            "nullable": true
+            "format": "date-time"
           },
           "tarifId": {
             "type": "string",
