@@ -18,6 +18,8 @@ namespace kurswork_back.Repositories
         Task<long> CountSubscribersAsync();
         Task<long> CountSimsByStatusAsync(string status);
         Task<long> CountNewSubscribersAsync(int days);
+        Task<List<(string TarifId, long Count)>> CountSimsByTarifAsync();
+        Task<List<(DateTime Date, long Count)>> CountSubscribersByDayAsync(int days);
     }
 
     public class SubscriberRepository : ISubscriberRepository
@@ -64,7 +66,6 @@ namespace kurswork_back.Repositories
             {
                 number = number.Replace("+", "").Replace(" ", "");
 
-                // ВИПРАВЛЕНО: було sim.SimNumber.Contains(number) — не працює в MongoDB
                 filter &= filterBuilder.ElemMatch(
                     s => s.Sims,
                     Builders<SimCard>.Filter.Regex(
@@ -96,10 +97,20 @@ namespace kurswork_back.Repositories
                 filter &= filterBuilder.ElemMatch(s => s.Sims, sim => sim.TarifId == tarifId);
 
             var total = await _subscribers.CountDocumentsAsync(filter);
+
             var items = await _subscribers.Find(filter)
                 .Skip((page - 1) * pageSize)
                 .Limit(pageSize)
                 .ToListAsync();
+
+            // Фільтруємо SIM-карти всередині кожного абонента
+            foreach (var subscriber in items)
+            {
+                subscriber.Sims = subscriber.Sims.Where(sim =>
+                    (string.IsNullOrWhiteSpace(simStatus) || sim.Status == simStatus) &&
+                    (string.IsNullOrWhiteSpace(tarifId) || sim.TarifId == tarifId)
+                ).ToList();
+            }
 
             return (items, total);
         }
@@ -148,6 +159,66 @@ namespace kurswork_back.Repositories
             var since = DateTime.UtcNow.AddDays(-days);
             var filter = Builders<Subscriber>.Filter.Gte(s => s.CreatedAt, since);
             return await _subscribers.CountDocumentsAsync(filter);
+        }
+        public async Task<List<(string TarifId, long Count)>> CountSimsByTarifAsync()
+        {
+            var pipeline = new[]
+            {
+                new BsonDocument("$unwind", "$sims"),
+                new BsonDocument("$group", new BsonDocument
+                {
+                    { "_id", "$sims.TarifId" },
+                    { "count", new BsonDocument("$sum", 1) }
+                })
+            };
+
+            var results = await _subscribers
+                .Aggregate<BsonDocument>(pipeline)
+                .ToListAsync();
+
+            return results
+                .Select(r => (
+                    TarifId: r["_id"].AsString,
+                    Count: (long)r["count"].AsInt32
+                ))
+                .ToList();
+        }
+
+        public async Task<List<(DateTime Date, long Count)>> CountSubscribersByDayAsync(int days)
+        {
+            var allSubscribers = await _subscribers
+                .Find(_ => true)
+                .ToListAsync();
+
+            var today = DateTime.UtcNow.Date;
+            var since = today.AddDays(-days + 1);
+
+            var countPerDay = allSubscribers
+                .GroupBy(s => s.CreatedAt.Date)
+                .ToDictionary(
+                    g => g.Key,   
+                    g => (long)g.Count()  
+                );
+
+            var result = new List<(DateTime Date, long Count)>();
+            long runningTotal = 0;
+
+            for (var date = since; date <= today; date = date.AddDays(1))
+            {
+                if (date == since)
+                {
+                    runningTotal = allSubscribers.Count(s => s.CreatedAt.Date < since);
+                }
+
+                if (countPerDay.TryGetValue(date, out var newToday))
+                {
+                    runningTotal += newToday;
+                }
+
+                result.Add((date, runningTotal));
+            }
+
+            return result;
         }
     }
 }

@@ -377,7 +377,7 @@
     "Parameters": [
       {
         "Name": "tarif",
-        "Type": "Tarif",
+        "Type": "kurswork_back.Models.Tarif",
         "IsRequired": true
       }
     ],
@@ -430,7 +430,7 @@
       },
       {
         "Name": "tarif",
-        "Type": "Tarif",
+        "Type": "kurswork_back.Models.Tarif",
         "IsRequired": true
       }
     ],

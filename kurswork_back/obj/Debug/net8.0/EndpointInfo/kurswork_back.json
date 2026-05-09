@@ -847,16 +847,26 @@
   "components": {
     "schemas": {
       "CreateSimDto": {
+        "required": [
+          "tarifId"
+        ],
         "type": "object",
         "properties": {
           "tarifId": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "pattern": "^[a-fA-F0-9]{24}$",
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "CreateUserDto": {
+        "required": [
+          "email",
+          "name",
+          "password",
+          "role"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -864,71 +874,99 @@
             "nullable": true
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 100,
+            "minLength": 2,
+            "type": "string"
           },
           "email": {
+            "maxLength": 254,
+            "minLength": 0,
             "type": "string",
-            "nullable": true
+            "format": "email"
           },
           "password": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 100,
+            "minLength": 6,
+            "type": "string"
           },
           "role": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "pattern": "^(User|Admin|Manager)$",
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "LoginDto": {
+        "required": [
+          "email",
+          "password"
+        ],
         "type": "object",
         "properties": {
           "email": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "email"
           },
           "password": {
-            "type": "string",
-            "nullable": true
+            "minLength": 6,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "RefreshRequestDto": {
+        "required": [
+          "refreshToken"
+        ],
         "type": "object",
         "properties": {
           "refreshToken": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "RegisterDto": {
+        "required": [
+          "email",
+          "name",
+          "password",
+          "role"
+        ],
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 100,
+            "minLength": 2,
+            "type": "string"
           },
           "role": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "pattern": "^(User|Admin|Manager)$",
+            "type": "string"
           },
           "email": {
+            "maxLength": 254,
+            "minLength": 0,
             "type": "string",
-            "nullable": true
+            "format": "email"
           },
           "password": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 100,
+            "minLength": 6,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "SimCard": {
+        "required": [
+          "status",
+          "tarifId"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -936,25 +974,31 @@
             "nullable": true
           },
           "simNumber": {
+            "pattern": "^\\+?[0-9]{10,15}$",
             "type": "string",
             "nullable": true
           },
           "status": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "pattern": "^(active|inactive|blocked)$",
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
             "format": "date-time"
           },
           "tarifId": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "Subscriber": {
+        "required": [
+          "fullName",
+          "sims"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -962,8 +1006,10 @@
             "nullable": true
           },
           "fullName": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 150,
+            "minLength": 2,
+            "pattern": "^[\\p{Lu}][\\p{Ll}\\-]+\\s[\\p{Lu}][\\p{Ll}\\-]+\\s[\\p{Lu}][\\p{Ll}\\-]+$",
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -973,8 +1019,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SimCard"
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -1013,7 +1058,7 @@
           },
           "price": {
             "maximum": 10000,
-            "minimum": 0,
+            "minimum": 0,01,
             "type": "number",
             "format": "double"
           }
@@ -1021,15 +1066,21 @@
         "additionalProperties": false
       },
       "UpdateSimDto": {
+        "required": [
+          "status",
+          "tarifId"
+        ],
         "type": "object",
         "properties": {
           "status": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "pattern": "^(active|inactive|blocked)$",
+            "type": "string"
           },
           "tarifId": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "pattern": "^[a-fA-F0-9]{24}$",
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -1038,18 +1089,26 @@
         "type": "object",
         "properties": {
           "name": {
+            "maxLength": 100,
+            "minLength": 2,
             "type": "string",
             "nullable": true
           },
           "email": {
+            "maxLength": 254,
+            "minLength": 0,
             "type": "string",
+            "format": "email",
             "nullable": true
           },
           "password": {
+            "maxLength": 100,
+            "minLength": 6,
             "type": "string",
             "nullable": true
           },
           "role": {
+            "pattern": "^(User|Admin|Manager)$",
             "type": "string",
             "nullable": true
           }

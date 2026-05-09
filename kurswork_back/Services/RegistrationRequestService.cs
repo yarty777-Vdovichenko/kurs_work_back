@@ -30,12 +30,6 @@ namespace kurswork_back.Services
 
         public async Task CreateRequestAsync(RegisterDto dto)
         {
-            if (!dto.Email.Contains("@") || !dto.Email.Contains("."))
-                throw new Exception("Неправильний email");
-            if (dto.Name.Length < 5)
-                throw new Exception("Коротке ім'я");
-            if (dto.Password.Length < 6)
-                throw new Exception("Короткий пароль");
 
             var existingUser = await _userRepository.GetByEmailAsync(dto.Email);
             if (existingUser != null)

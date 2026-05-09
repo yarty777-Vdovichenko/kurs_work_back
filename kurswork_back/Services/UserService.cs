@@ -41,19 +41,8 @@ namespace kurswork_back.Services
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
 
-            if (string.IsNullOrWhiteSpace(user.Email))
-                throw new Exception("Ел. пошта обов'язкова");
 
             var existingUser = await _repository.GetByEmailAsync(user.Email);
-
-            if (user.Password.Length < 6)
-                throw new Exception("Короткий пароль!");
-
-            if (existingUser != null)
-                throw new Exception("Ел. пошта вже зайнята");
-
-            if (string.IsNullOrWhiteSpace(user.Name))
-                throw new Exception("Ім'я обов'язкове");
 
             if (user.Role != "Manager" && user.Role != "Admin" && user.Role != "User")
                 throw new Exception("Є тільки 3 ролі:User,Meneger,Admin");
