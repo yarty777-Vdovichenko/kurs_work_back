@@ -24,8 +24,13 @@ namespace kurswork_back.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto dto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             try
             {
+                
                 await _registrationRequestService.CreateRequestAsync(dto);
                 return Ok(new { message = "Заявку надіслано. Очікуйте підтвердження менеджера." });
             }

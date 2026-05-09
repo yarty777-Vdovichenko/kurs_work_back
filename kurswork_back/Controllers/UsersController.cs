@@ -14,6 +14,8 @@ namespace kurswork_back.Controllers
     {
         private bool CanManageUser(string currentRole, string targetRole)
         {
+            if (currentRole == Roles.Manager && targetRole == Roles.Manager) return false;
+
             if (currentRole == Roles.Manager) return true;
 
             if (currentRole == Roles.Admin && targetRole == Roles.Manager) return false;
@@ -79,6 +81,10 @@ namespace kurswork_back.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateUserDto user)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             try
             {
                 await _userService.CreateAsync(user);
@@ -89,7 +95,7 @@ namespace kurswork_back.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
+        [Authorize(Roles = $"{Roles.Manager}")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -117,6 +123,10 @@ namespace kurswork_back.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, [FromBody] CreateUserDto user)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             try
             {
                 var currentUserRole = User.FindFirstValue(ClaimTypes.Role);
@@ -152,6 +162,10 @@ namespace kurswork_back.Controllers
         [HttpPatch("{id}")]
         public async Task<IActionResult> Patch(string id, [FromBody] UpdateUserDto dto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             try
             {

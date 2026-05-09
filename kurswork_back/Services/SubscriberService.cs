@@ -33,7 +33,7 @@ namespace kurswork_back.Services
             _tarifRepository = tarifRepository;
         }
 
-        private const int PageSize = 4;
+        private const int PageSize = 40;
 
         private async Task<string> GenerateUniqueSimNumberAsync()
         {
@@ -122,7 +122,7 @@ namespace kurswork_back.Services
                 {
                     sim.SimNumber = await GenerateUniqueSimNumberAsync();
                     if (sim.CreatedAt == default)
-                        sim.CreatedAt = DateTime.UtcNow;  // було .ToString("...")
+                        sim.CreatedAt = DateTime.UtcNow;
                 }
             }
 
@@ -141,7 +141,7 @@ namespace kurswork_back.Services
                 Id = ObjectId.GenerateNewId().ToString(),
                 SimNumber = await GenerateUniqueSimNumberAsync(),
                 TarifId = dto.TarifId,
-                CreatedAt = DateTime.UtcNow  // було .ToString("...")
+                CreatedAt = DateTime.UtcNow
             };
 
             if (subscriber.Sims == null)
@@ -228,13 +228,36 @@ namespace kurswork_back.Services
             var newLast7Days = await _repository.CountNewSubscribersAsync(7);
             var totalTarifs = await _tarifRepository.CountAsync();
 
+            var simsByTarifRaw = await _repository.CountSimsByTarifAsync();
+            var allTarifs = await _tarifRepository.GetAllAsync();
+
+            var simsByTarif = simsByTarifRaw
+                .Select(x => new
+                {
+                    tarifName = allTarifs.FirstOrDefault(t => t.Id == x.TarifId)?.Name ?? x.TarifId,
+                    count = x.Count
+                })
+                .OrderByDescending(x => x.count)
+                .ToList();
+
+            var rawByDay = await _repository.CountSubscribersByDayAsync(30);
+            var subscribersByDay = rawByDay
+                    .Select(x => new
+                    {
+                        date = x.Date.ToString("dd.MM"),
+                        count = x.Count
+                    })
+                    .ToList();
+
             return new
             {
                 totalSubscribers,
                 activeSims,
                 blockedSims,
                 newSubscribersLast7Days = newLast7Days,
-                totalTarifs
+                totalTarifs,
+                simsByTarif,
+                subscribersByDay
             };
         }
     }
