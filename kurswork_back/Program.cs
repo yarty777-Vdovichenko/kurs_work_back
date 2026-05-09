@@ -2,6 +2,7 @@ using kurswork_back.Data;
 using kurswork_back.Repositories;
 using kurswork_back.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -22,6 +23,7 @@ builder.Services.AddCors(options =>
     });
 });
 
+
 var jwtKey = builder.Configuration["Jwt:Key"];
 
 builder.Services.AddAuthentication(options =>
@@ -29,6 +31,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
+ 
 .AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
@@ -93,6 +96,23 @@ builder.Services.AddSwaggerGen(options =>
             new string[] {}
         }
     });
+});
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        var errors = context.ModelState
+            .Where(x => x.Value.Errors.Count > 0)
+            .SelectMany(x => x.Value.Errors)
+            .Select(x => x.ErrorMessage)
+            .ToList();
+
+        return new BadRequestObjectResult(new
+        {
+            message = errors.FirstOrDefault()
+        });
+    };
 });
 
 var app = builder.Build();

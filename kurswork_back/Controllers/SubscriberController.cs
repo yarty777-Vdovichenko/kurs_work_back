@@ -36,6 +36,7 @@ namespace kurswork_back.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] int page = 1)
         {
+
             try
             {
                 var result = await _service.GetAllAsync(page);

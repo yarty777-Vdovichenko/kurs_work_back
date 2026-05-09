@@ -1,6 +1,6 @@
-﻿using MongoDB.Bson;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using System.Runtime.CompilerServices;
+using System.ComponentModel.DataAnnotations;
 
 namespace kurswork_back.Models
 {
@@ -9,11 +9,19 @@ namespace kurswork_back.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
+
         [BsonElement("name")]
+        [Required(ErrorMessage = "Повне ім'я обов'язкове")]
+        [StringLength(150, MinimumLength = 2, ErrorMessage = "Повне ім'я має бути від 2 до 150 символів")]
+        [RegularExpression(@"^[\p{Lu}][\p{Ll}\-]+\s[\p{Lu}][\p{Ll}\-]+\s[\p{Lu}][\p{Ll}\-]+$",ErrorMessage = "Введіть повне ПІБ (Прізвище Ім'я По-батькові)")]
         public string FullName { get; set; }
+
         [BsonElement("createdat")]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         public DateTime CreatedAt { get; set; }
+
         [BsonElement("sims")]
-        public List<SimCard> Sims { get; set; }
+        [Required(ErrorMessage = "Список SIM-карт обов'язковий")]
+        public List<SimCard> Sims { get; set; } = [];
     }
 }
