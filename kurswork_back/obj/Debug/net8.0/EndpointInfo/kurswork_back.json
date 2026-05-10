@@ -634,6 +634,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "newTarifId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -687,35 +694,6 @@
         "tags": [
           "Users"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserDto"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "OK"
@@ -854,7 +832,6 @@
         "properties": {
           "tarifId": {
             "minLength": 1,
-            "pattern": "^[a-fA-F0-9]{24}$",
             "type": "string"
           }
         },

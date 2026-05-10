@@ -5,198 +5,125 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace kurswork_back.Controllers
+[ApiController]
+[Route("api/users")]
+public class UsersController : ControllerBase
 {
+    private readonly IUserService _userService;
 
-    [ApiController]
-    [Route("api/users")]
-    public class UsersController : ControllerBase
+    public UsersController(IUserService userService)
     {
-        private bool CanManageUser(string currentRole, string targetRole)
+        _userService = userService;
+    }
+
+    [Authorize(Roles = $"{Roles.Manager},{Roles.Admin}")]
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        try
         {
-            if (currentRole == Roles.Manager && targetRole == Roles.Manager) return false;
-
-            if (currentRole == Roles.Manager) return true;
-
-            if (currentRole == Roles.Admin && targetRole == Roles.Manager) return false;
-
-            return true;
+            var users = await _userService.GetAllAsync();
+            var result = users.Select(u => new UserDto
+            {
+                Id = u.Id!,
+                Name = u.Name,
+                Email = u.Email,
+                Role = u.Role
+            });
+            return Ok(result);
         }
-        private readonly IUserService _userService;
-        public UsersController(IUserService userService)
+        catch (Exception ex) { return BadRequest(new { message = ex.Message }); }
+    }
+
+    [Authorize(Roles = $"{Roles.Manager},{Roles.Admin}")]
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(string id)
+    {
+        try
         {
-            _userService = userService;
+            var user = await _userService.GetByIdAsync(id);
+            if (user == null) return NotFound();
+            return Ok(new UserDto { Id = user.Id!, Name = user.Name, Email = user.Email, Role = user.Role });
         }
-        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
+        catch (Exception ex) { return BadRequest(new { message = ex.Message }); }
+    }
+
+    [Authorize(Roles = $"{Roles.Manager},{Roles.Admin}")]
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(string id)
+    {
+        try
         {
-            try
-            {
-                var users = await _userService.GetAllAsync();
+            var currentRole = User.FindFirstValue(ClaimTypes.Role)!;
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
 
-                var result = users.Select(u => new UserDto
-                {
-                    Id = u.Id!,
-                    Name = u.Name,
-                    Email = u.Email,
-                    Role = u.Role
-                });
+            if (currentUserId == id)
+                return BadRequest(new { message = "Не можна видалити свій власний акаунт" });
 
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+            var targetUser = await _userService.GetByIdAsync(id);
+            if (targetUser == null) return NotFound();
 
+            if (currentRole == Roles.Admin && targetUser.Role != Roles.User)
+                return Forbid();
+
+            if (currentRole == Roles.Manager && targetUser.Role == Roles.Manager)
+                return Forbid();
+
+            await _userService.DeleteAsync(id);
+            return NoContent();
         }
-        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(string id)
+        catch (Exception ex) { return BadRequest(new { message = ex.Message }); }
+    }
+
+    [Authorize(Roles = Roles.Manager)]
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(string id, [FromBody] CreateUserDto dto)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        try
         {
-            try
-            {
-                var user = await _userService.GetByIdAsync(id);
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
 
-                if (user == null)
-                    return NotFound();
+            if (currentUserId == id)
+                return BadRequest(new { message = "Не можна редагувати свій власний акаунт" });
 
-                var result = new UserDto
-                {
-                    Id = user.Id!,
-                    Name = user.Name,
-                    Email = user.Email,
-                    Role = user.Role
-                };
+            var targetUser = await _userService.GetByIdAsync(id);
+            if (targetUser == null) return NotFound();
 
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+            if (dto.Role == Roles.Manager)
+                return Forbid();
+
+            var updated = await _userService.UpdateAsync(id, dto);
+            if (!updated) return NotFound();
+            return NoContent();
         }
-        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateUserDto user)
+        catch (Exception ex) { return BadRequest(new { message = ex.Message }); }
+    }
+
+    [Authorize(Roles = Roles.Manager)]
+    [HttpPatch("{id}")]
+    public async Task<IActionResult> Patch(string id, [FromBody] UpdateUserDto dto)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        try
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            try
-            {
-                await _userService.CreateAsync(user);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+
+            if (currentUserId == id)
+                return BadRequest(new { message = "Не можна редагувати свій власний акаунт" });
+
+            var targetUser = await _userService.GetByIdAsync(id);
+            if (targetUser == null) return NotFound();
+
+            if (dto.Role == Roles.Manager)
+                return Forbid();
+
+            var updated = await _userService.PatchAsync(id, dto);
+            if (!updated) return NotFound();
+            return NoContent();
         }
-        [Authorize(Roles = $"{Roles.Manager}")]
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
-        {
-            try
-            {
-                var currentUserRole = User.FindFirstValue(ClaimTypes.Role);
-                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var targetUser = await _userService.GetByIdAsync(id);
-
-                if (currentUserId == id)
-                    return BadRequest(new { message = "Не можна видалити свій власний акаунт" });
-
-                if (!CanManageUser(currentUserRole!, targetUser.Role))
-                    return Forbid();
-
-                await _userService.DeleteAsync(id);
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
-        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id, [FromBody] CreateUserDto user)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            try
-            {
-                var currentUserRole = User.FindFirstValue(ClaimTypes.Role);
-                var targetUser = await _userService.GetByIdAsync(id);
-                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-                if (!CanManageUser(currentUserRole!, targetUser.Role))
-                    return Forbid();
-
-                if (!CanManageUser(currentUserRole!, user.Role))
-                    return Forbid();
-
-                if (currentUserId == id)
-                {
-                    var currentUser = await _userService.GetByIdAsync(id);
-                    if (currentUser != null && currentUser.Role != user.Role)
-                        return BadRequest(new { message = "Не можна змінювати власну роль" });
-                }
-
-                var updated = await _userService.UpdateAsync(id, user);
-
-                if (!updated)
-                    return NotFound();
-
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
-        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> Patch(string id, [FromBody] UpdateUserDto dto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            try
-            {
-                var currentUserRole = User.FindFirstValue(ClaimTypes.Role);
-                var targetUser = await _userService.GetByIdAsync(id);
-                var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-                if (!CanManageUser(currentUserRole!, targetUser.Role))
-                    return Forbid();
-
-                if (!CanManageUser(currentUserRole!, dto.Role))
-                    return Forbid();
-
-                if (currentUserId == id && !string.IsNullOrWhiteSpace(dto.Role))
-                {
-                    var currentUser = await _userService.GetByIdAsync(id);
-                    if (currentUser != null && currentUser.Role != dto.Role)
-                        return BadRequest(new { message = "Не можна змінювати власну роль" });
-                }
-
-                var updated = await _userService.PatchAsync(id, dto);
-
-                if (!updated)
-                    return NotFound();
-
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
+        catch (Exception ex) { return BadRequest(new { message = ex.Message }); }
     }
 }

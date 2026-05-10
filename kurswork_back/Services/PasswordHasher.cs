@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using System.Text;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace kurswork_back.Services
 {
@@ -8,20 +7,20 @@ namespace kurswork_back.Services
         string HashPassword(string password);
         bool Verify(string password, string hash);
     }
+
     public class PasswordHasher : IPasswordHasher
     {
+        private readonly PasswordHasher<string> _hasher = new();
+
         public string HashPassword(string password)
         {
-            using var sha256 = SHA256.Create();
-            var bytes = Encoding.UTF8.GetBytes(password);
-            var hash = sha256.ComputeHash(bytes);
-            return Convert.ToBase64String(hash);
+            return _hasher.HashPassword(null!, password);
         }
 
         public bool Verify(string password, string hash)
         {
-            var computedHash = HashPassword(password);
-            return computedHash == hash;
+            var result = _hasher.VerifyHashedPassword(null!, hash, password);
+            return result != PasswordVerificationResult.Failed;
         }
     }
 }
