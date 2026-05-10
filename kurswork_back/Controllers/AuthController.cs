@@ -57,8 +57,15 @@ namespace kurswork_back.Controllers
         [HttpPost("refresh")]
         public async Task<IActionResult> Refresh(RefreshRequestDto dto)
         {
-            var result = await _authService.RefreshAsync(dto.RefreshToken);
-            return Ok(result);
+            try
+            {
+                var result = await _authService.RefreshAsync(dto.RefreshToken);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(new { message = ex.Message });
+            }
         }
 
         [Authorize]

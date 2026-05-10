@@ -51,7 +51,7 @@ namespace kurswork_back.Controllers
             }
             
         }
-        [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
+        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Tarif tarif)
         {
@@ -71,29 +71,29 @@ namespace kurswork_back.Controllers
             }
             
         }
-        [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
+        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string id, [FromQuery] string newTarifId)
         {
+            if (string.IsNullOrWhiteSpace(newTarifId))
+                return BadRequest(new { message = "Необхідно вказати новий тариф (newTarifId)" });
             try
             {
-                await _service.DeleteAsync(id);
-
+                await _service.DeleteAsync(id, newTarifId);
                 return Ok();
             }
             catch (Exception ex)
             {
                 return BadRequest(new { message = ex.Message });
             }
-            
         }
-        [Authorize(Roles = $"{Roles.User},{Roles.Admin},{Roles.Manager}")]
+        [Authorize(Roles = $"{Roles.Admin},{Roles.Manager}")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, [FromBody] Tarif tarif)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(ModelState);  
             }
             try
             {

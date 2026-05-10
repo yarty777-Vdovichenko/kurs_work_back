@@ -411,6 +411,11 @@
         "Name": "id",
         "Type": "System.String",
         "IsRequired": true
+      },
+      {
+        "Name": "newTarifId",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -437,7 +442,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "kurswork_back.Controllers.UsersController",
+    "ContainingType": "UsersController",
     "Method": "GetAll",
     "RelativePath": "api/users",
     "HttpMethod": "GET",
@@ -447,23 +452,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "kurswork_back.Controllers.UsersController",
-    "Method": "Create",
-    "RelativePath": "api/users",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "user",
-        "Type": "kurswork_back.DTOs.CreateUserDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "kurswork_back.Controllers.UsersController",
+    "ContainingType": "UsersController",
     "Method": "GetById",
     "RelativePath": "api/users/{id}",
     "HttpMethod": "GET",
@@ -479,7 +468,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "kurswork_back.Controllers.UsersController",
+    "ContainingType": "UsersController",
     "Method": "Delete",
     "RelativePath": "api/users/{id}",
     "HttpMethod": "DELETE",
@@ -495,7 +484,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "kurswork_back.Controllers.UsersController",
+    "ContainingType": "UsersController",
     "Method": "Update",
     "RelativePath": "api/users/{id}",
     "HttpMethod": "PUT",
@@ -508,7 +497,7 @@
         "IsRequired": true
       },
       {
-        "Name": "user",
+        "Name": "dto",
         "Type": "kurswork_back.DTOs.CreateUserDto",
         "IsRequired": true
       }
@@ -516,7 +505,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "kurswork_back.Controllers.UsersController",
+    "ContainingType": "UsersController",
     "Method": "Patch",
     "RelativePath": "api/users/{id}",
     "HttpMethod": "PATCH",

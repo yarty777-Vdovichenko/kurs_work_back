@@ -8,16 +8,18 @@ namespace kurswork_back.Services
         Task<List<Tarif>> GetAllAsync();
         Task<Tarif?> GetByIdAsync(string id);
         Task CreateAsync(Tarif tarif);
-        Task DeleteAsync(string id);
+        Task DeleteAsync(string id, string newTarifId);
         Task<bool> UpdateAsync(string id, Tarif updatedTarif);
     }
     public class TarifService : ITarifService
     {
         private readonly ITarifRepository _repository;
-        
-        public TarifService(ITarifRepository repository)
+        private readonly ISubscriberRepository _subscriberRepository;
+
+        public TarifService(ITarifRepository repository, ISubscriberRepository subscriberRepository)
         {
             _repository = repository;
+            _subscriberRepository = subscriberRepository;
         }
         public async Task<List<Tarif>> GetAllAsync()
         {
@@ -37,10 +39,27 @@ namespace kurswork_back.Services
 
             await _repository.CreateAsync(tarif);
         }
-        public async Task DeleteAsync(string id)
+        public async Task DeleteAsync(string id, string newTarifId)
         {
-            if(string.IsNullOrWhiteSpace(id))
+            if (string.IsNullOrWhiteSpace(id))
                 throw new ArgumentException("Пустий ід");
+            if (string.IsNullOrWhiteSpace(newTarifId))
+                throw new ArgumentException("Не вказано новий тариф");
+
+            if (id == newTarifId)
+            {
+                throw new ArgumentException("Вони повинні відрізнятися");
+            }
+
+            var tarifToDelete = await _repository.GetByIdAsync(id);
+            if (tarifToDelete == null)
+                throw new KeyNotFoundException("Тариф не знайдено");
+
+            var newTarif = await _repository.GetByIdAsync(newTarifId);
+            if (newTarif == null)
+                throw new KeyNotFoundException("Новий тариф не знайдено");
+
+            await _subscriberRepository.UpdateTarifForAllAsync(id, newTarifId);
 
             await _repository.DeleteAsync(id);
         }

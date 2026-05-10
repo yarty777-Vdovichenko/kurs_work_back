@@ -1,7 +1,9 @@
 ﻿using kurswork_back.DTOs;
 using kurswork_back.Models;
 using kurswork_back.Repositories;
-
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
 namespace kurswork_back.Services
 {
     public interface IRegistrationRequestService
@@ -74,6 +76,8 @@ namespace kurswork_back.Services
             if (request.Status != "Pending")
                 throw new Exception("Заявка вже оброблена");
 
+            await SendEmailAsync(request.Email, "Заявку схвалено", "Вітаємо! Вашу заявку схвалено, можете входити.");
+
             var user = new User
             {
                 Name = request.Name,
@@ -94,7 +98,23 @@ namespace kurswork_back.Services
             if (request.Status != "Pending")
                 throw new Exception("Заявка вже оброблена");
 
+            await SendEmailAsync(request.Email, "Заявку відхилено", "На жаль, вашу заявку відхилено.");
+
             await _requestRepository.DeleteAsync(id);
+        }
+        private async Task SendEmailAsync(string toEmail, string subject, string body)
+        {
+            var message = new MimeMessage();
+            message.From.Add(MailboxAddress.Parse("yaroslav0908l@gmail.com"));
+            message.To.Add(MailboxAddress.Parse(toEmail));
+            message.Subject = subject;
+            message.Body = new BodyBuilder { TextBody = body }.ToMessageBody();
+
+            using var smtp = new SmtpClient();
+            await smtp.ConnectAsync("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+            await smtp.AuthenticateAsync("yaroslav0908l@gmail.com", "w t c i n i v f v e e k r y u b");
+            await smtp.SendAsync(message);
+            await smtp.DisconnectAsync(true);
         }
     }
 }

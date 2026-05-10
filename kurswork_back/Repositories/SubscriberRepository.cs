@@ -20,6 +20,7 @@ namespace kurswork_back.Repositories
         Task<long> CountNewSubscribersAsync(int days);
         Task<List<(string TarifId, long Count)>> CountSimsByTarifAsync();
         Task<List<(DateTime Date, long Count)>> CountSubscribersByDayAsync(int days);
+        Task UpdateTarifForAllAsync(string oldTarifId, string newTarifId);
     }
 
     public class SubscriberRepository : ISubscriberRepository
@@ -219,6 +220,26 @@ namespace kurswork_back.Repositories
             }
 
             return result;
+        }
+        public async Task UpdateTarifForAllAsync(string oldTarifId, string newTarifId)
+        {
+            var filter = Builders<Subscriber>.Filter
+                .ElemMatch(s => s.Sims, sim => sim.TarifId == oldTarifId);
+
+            var update = Builders<Subscriber>.Update
+                .Set("sims.$[elem].TarifId", newTarifId);
+
+            var options = new UpdateOptions
+            {
+                ArrayFilters = new List<ArrayFilterDefinition>
+                {
+                    new BsonDocumentArrayFilterDefinition<BsonDocument>(
+                        new BsonDocument("elem.TarifId", oldTarifId)
+                    )
+                }
+            };
+
+            await _subscribers.UpdateManyAsync(filter, update, options);
         }
     }
 }

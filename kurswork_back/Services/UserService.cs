@@ -41,12 +41,16 @@ namespace kurswork_back.Services
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
 
+            if (user.Role != Roles.User && user.Role != Roles.Admin && user.Role != Roles.Manager)
+                throw new Exception("Невідома роль");
 
-            var existingUser = await _repository.GetByEmailAsync(user.Email);
+            if (user.Role == Roles.Manager)
+            {
+                var allUsers = await _repository.GetAllAsync();
+                if (allUsers.Any(u => u.Role == Roles.Manager))
+                    throw new Exception("Manager вже існує, може бути тільки один");
+            }
 
-            if (user.Role != "Manager" && user.Role != "Admin" && user.Role != "User")
-                throw new Exception("Є тільки 3 ролі:User,Meneger,Admin");
-            
             var userOK = new User
             {
                 Name = user.Name,

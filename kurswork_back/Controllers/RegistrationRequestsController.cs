@@ -16,7 +16,7 @@ namespace kurswork_back.Controllers
             _service = service;
         }
 
-        [Authorize(Roles = $"{Roles.Manager}")]
+        [Authorize(Roles = $"{Roles.Manager},{Roles.Admin}")]
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] string? status = null)
         {
@@ -32,7 +32,7 @@ namespace kurswork_back.Controllers
             
         }
 
-        [Authorize(Roles = $"{Roles.Manager}")]
+        [Authorize(Roles = $"{Roles.Manager},{Roles.Admin}")]
         [HttpPost("{id}/approve")]
         public async Task<IActionResult> Approve(string id)
         {
@@ -47,7 +47,7 @@ namespace kurswork_back.Controllers
             }
         }
 
-        [Authorize(Roles = $"{Roles.Manager}")]
+        [Authorize(Roles = $"{Roles.Manager},{Roles.Admin}")]
         [HttpPost("{id}/reject")]
         public async Task<IActionResult> Reject(string id)
         {
