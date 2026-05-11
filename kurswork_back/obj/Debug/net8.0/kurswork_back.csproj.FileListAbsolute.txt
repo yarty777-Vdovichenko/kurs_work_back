@@ -99,3 +99,4 @@ D:\kurswork_back\kurswork_back\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.
 D:\kurswork_back\kurswork_back\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 D:\kurswork_back\kurswork_back\bin\Debug\net8.0\Microsoft.Extensions.WebEncoders.dll
 D:\kurswork_back\kurswork_back\bin\Debug\net8.0\System.Security.Cryptography.Xml.dll
+D:\kurswork_back\kurswork_back\bin\Debug\net8.0\BCrypt-Net-Next.dll

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "4kugBPPwNIg=",
+  "dgSpecHash": "gFvytr6VtWQ=",
   "success": true,
   "projectFilePath": "D:\\kurswork_back\\kurswork_back\\kurswork_back.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\User333\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",
     "C:\\Users\\User333\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",
     "C:\\Users\\User333\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\User333\\.nuget\\packages\\mailkit\\4.16.0\\mailkit.4.16.0.nupkg.sha512",

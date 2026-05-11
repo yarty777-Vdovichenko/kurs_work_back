@@ -100,7 +100,22 @@ public class UsersController : ControllerBase
         }
         catch (Exception ex) { return BadRequest(new { message = ex.Message }); }
     }
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateUserDto dto)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
 
+        try
+        {
+            await _userService.CreateAsync(dto);
+            return Ok(new { message = "Користувача створено" });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
     [Authorize(Roles = Roles.Manager)]
     [HttpPatch("{id}")]
     public async Task<IActionResult> Patch(string id, [FromBody] UpdateUserDto dto)

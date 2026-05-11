@@ -13,7 +13,7 @@ namespace kurswork_back.Models
         [BsonElement("name")]
         [Required(ErrorMessage = "Повне ім'я обов'язкове")]
         [StringLength(150, MinimumLength = 2, ErrorMessage = "Повне ім'я має бути від 2 до 150 символів")]
-        [RegularExpression(@"^[\p{Lu}][\p{Ll}\-]+\s[\p{Lu}][\p{Ll}\-]+\s[\p{Lu}][\p{Ll}\-]+$",ErrorMessage = "Введіть повне ПІБ (Прізвище Ім'я По-батькові)")]
+        [RegularExpression(@"^\S+\s\S+\s\S+$", ErrorMessage = "Введіть ПІБ (3 слова через пробіл)")]
         public string FullName { get; set; }
 
         [BsonElement("createdat")]
