@@ -33,7 +33,7 @@ namespace kurswork_back.Services
             _tarifRepository = tarifRepository;
         }
 
-        private const int PageSize = 40;
+        private const int PageSize = 100;
 
         private async Task<string> GenerateUniqueSimNumberAsync()
         {
