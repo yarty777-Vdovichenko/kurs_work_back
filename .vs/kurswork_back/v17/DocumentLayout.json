@@ -1,52 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\kurswork_back\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\services\\tarifservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\services\\tarifservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\controllers\\tarifcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\controllers\\tarifcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\repositories\\tarifrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\repositories\\tarifrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\controllers\\registrationrequestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\controllers\\registrationrequestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\models\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\models\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\services\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\services\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -54,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -63,140 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Services\\AuthService.cs",
-              "RelativeDocumentMoniker": "kurswork_back\\Services\\AuthService.cs",
-              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Services\\AuthService.cs",
-              "RelativeToolTip": "kurswork_back\\Services\\AuthService.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T17:06:16.461Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "kurswork_back\\Services\\UserService.cs",
-              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Services\\UserService.cs",
-              "RelativeToolTip": "kurswork_back\\Services\\UserService.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAswEIAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T12:08:11.085Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "JwtService.cs",
-              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Services\\JwtService.cs",
-              "RelativeDocumentMoniker": "kurswork_back\\Services\\JwtService.cs",
-              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Services\\JwtService.cs",
-              "RelativeToolTip": "kurswork_back\\Services\\JwtService.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAgwCkAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T15:46:39.328Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "kurswork_back\\Controllers\\AuthController.cs",
-              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "kurswork_back\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAYwEMAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T15:46:13.709Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TarifService.cs",
-              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Services\\TarifService.cs",
-              "RelativeDocumentMoniker": "kurswork_back\\Services\\TarifService.cs",
-              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Services\\TarifService.cs",
-              "RelativeToolTip": "kurswork_back\\Services\\TarifService.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T12:31:16.149Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TarifController.cs",
-              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Controllers\\TarifController.cs",
-              "RelativeDocumentMoniker": "kurswork_back\\Controllers\\TarifController.cs",
-              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Controllers\\TarifController.cs",
-              "RelativeToolTip": "kurswork_back\\Controllers\\TarifController.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAkwFkAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T12:24:08.533Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "TarifRepository.cs",
-              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Repositories\\TarifRepository.cs",
-              "RelativeDocumentMoniker": "kurswork_back\\Repositories\\TarifRepository.cs",
-              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Repositories\\TarifRepository.cs",
-              "RelativeToolTip": "kurswork_back\\Repositories\\TarifRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T12:24:06.157Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "RegistrationRequestsController.cs",
-              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Controllers\\RegistrationRequestsController.cs",
-              "RelativeDocumentMoniker": "kurswork_back\\Controllers\\RegistrationRequestsController.cs",
-              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Controllers\\RegistrationRequestsController.cs",
-              "RelativeToolTip": "kurswork_back\\Controllers\\RegistrationRequestsController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwDEAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T12:10:00.526Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Roles.cs",
-              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Models\\Roles.cs",
-              "RelativeDocumentMoniker": "kurswork_back\\Models\\Roles.cs",
-              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Models\\Roles.cs",
-              "RelativeToolTip": "kurswork_back\\Models\\Roles.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T11:55:41.115Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "kurswork_back\\Controllers\\UsersController.cs",
-              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "kurswork_back\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAYwHYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T11:51:14.158Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "PasswordHasher.cs",
-              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Services\\PasswordHasher.cs",
-              "RelativeDocumentMoniker": "kurswork_back\\Services\\PasswordHasher.cs",
-              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Services\\PasswordHasher.cs",
-              "RelativeToolTip": "kurswork_back\\Services\\PasswordHasher.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T11:47:54.86Z"
             }
           ]
         }
