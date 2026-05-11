@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BCrypt.Net;
+using Microsoft.AspNetCore.Identity;
+using Org.BouncyCastle.Crypto.Generators;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace kurswork_back.Services
 {
@@ -10,17 +14,29 @@ namespace kurswork_back.Services
 
     public class PasswordHasher : IPasswordHasher
     {
-        private readonly PasswordHasher<string> _hasher = new();
-
         public string HashPassword(string password)
         {
-            return _hasher.HashPassword(null!, password);
+            return BCrypt.Net.BCrypt.HashPassword(password);
         }
 
         public bool Verify(string password, string hash)
         {
-            var result = _hasher.VerifyHashedPassword(null!, hash, password);
-            return result != PasswordVerificationResult.Failed;
+            return BCrypt.Net.BCrypt.Verify(password, hash);
+        }
+    }
+    public class Sha256PasswordHasher : IPasswordHasher
+    {
+        public string HashPassword(string password)
+        {
+            using var sha = SHA256.Create();
+            var bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
+            return Convert.ToHexString(bytes);
+        }
+
+        public bool Verify(string password, string hash)
+        {
+            var hashedInput = HashPassword(password);
+            return hashedInput == hash;
         }
     }
 }
