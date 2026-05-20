@@ -132,3 +132,14 @@ D:\kurswork_back\kurswork_back_tests\obj\Debug\net8.0\refint\kurswork_back_tests
 D:\kurswork_back\kurswork_back_tests\obj\Debug\net8.0\kurswork_back_tests.pdb
 D:\kurswork_back\kurswork_back_tests\obj\Debug\net8.0\kurswork_back_tests.genruntimeconfig.cache
 D:\kurswork_back\kurswork_back_tests\obj\Debug\net8.0\ref\kurswork_back_tests.dll
+D:\kurswork_back\kurswork_back_tests\bin\Debug\net8.0\BCrypt-Net-Next.dll
+D:\kurswork_back\kurswork_back_tests\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\kurswork_back\kurswork_back_tests\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\kurswork_back\kurswork_back_tests\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+D:\kurswork_back\kurswork_back_tests\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+D:\kurswork_back\kurswork_back_tests\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+D:\kurswork_back\kurswork_back_tests\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\kurswork_back\kurswork_back_tests\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
+D:\kurswork_back\kurswork_back_tests\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\kurswork_back\kurswork_back_tests\bin\Debug\net8.0\Microsoft.Extensions.WebEncoders.dll
+D:\kurswork_back\kurswork_back_tests\bin\Debug\net8.0\System.Security.Cryptography.Xml.dll

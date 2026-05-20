@@ -1014,7 +1014,7 @@
           "fullName": {
             "maxLength": 150,
             "minLength": 2,
-            "pattern": "^[\\p{Lu}][\\p{Ll}\\-]+\\s[\\p{Lu}][\\p{Ll}\\-]+\\s[\\p{Lu}][\\p{Ll}\\-]+$",
+            "pattern": "^\\S+\\s\\S+\\s\\S+$",
             "type": "string"
           },
           "createdAt": {
