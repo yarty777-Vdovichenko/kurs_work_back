@@ -46,7 +46,20 @@ namespace kurswork_back.Controllers
             try
             {
                 var result = await _authService.LoginAsync(dto);
-                return Ok(result);
+
+                Response.Cookies.Append("refreshToken", result.RefreshToken, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.None,
+                    Expires = DateTime.UtcNow.AddDays(7)
+                });
+
+                return Ok(new
+                {
+                    accessToken = result.AccessToken,
+                    role = result.Role
+                });
             }
             catch (Exception ex)
             {
@@ -55,12 +68,25 @@ namespace kurswork_back.Controllers
         }
 
         [HttpPost("refresh")]
-        public async Task<IActionResult> Refresh(RefreshRequestDto dto)
+        public async Task<IActionResult> Refresh()
         {
             try
             {
-                var result = await _authService.RefreshAsync(dto.RefreshToken);
-                return Ok(result);
+                var refreshToken = Request.Cookies["refreshToken"];
+                if (string.IsNullOrEmpty(refreshToken))
+                    return Unauthorized(new { message = "Refresh token відсутній" });
+
+                var result = await _authService.RefreshAsync(refreshToken);
+
+                Response.Cookies.Append("refreshToken", result.RefreshToken, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.None,
+                    Expires = DateTime.UtcNow.AddDays(7)
+                });
+
+                return Ok(new { accessToken = result.AccessToken });
             }
             catch (Exception ex)
             {
@@ -74,6 +100,8 @@ namespace kurswork_back.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             await _authService.LogoutAsync(userId!);
+
+            Response.Cookies.Delete("refreshToken");
             return Ok();
         }
     }

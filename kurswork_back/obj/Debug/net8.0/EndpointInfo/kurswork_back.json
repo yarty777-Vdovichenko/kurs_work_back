@@ -72,25 +72,6 @@
         "tags": [
           "Auth"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RefreshRequestDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RefreshRequestDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/RefreshRequestDto"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "OK"
@@ -917,19 +898,6 @@
           },
           "password": {
             "minLength": 6,
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "RefreshRequestDto": {
-        "required": [
-          "refreshToken"
-        ],
-        "type": "object",
-        "properties": {
-          "refreshToken": {
-            "minLength": 1,
             "type": "string"
           }
         },
