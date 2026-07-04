@@ -1,4 +1,5 @@
 using kurswork_back.Data;
+using kurswork_back.Infrastructure.Seed;
 using kurswork_back.Repositories;
 using kurswork_back.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -49,6 +50,8 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddSingleton<MongoContext>();
+
+builder.Services.AddScoped<IDatabaseSeeder, DatabaseSeeder>();
 
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IAuthService, AuthService>();
