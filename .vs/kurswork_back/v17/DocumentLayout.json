@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "D:\\kurswork_back\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\infrastructure\\seed\\databaseseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\infrastructure\\seed\\databaseseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\services\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\services\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -19,10 +27,6 @@
       "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\infrastructure\\seed\\databaseseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\infrastructure\\seed\\databaseseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|d:\\kurswork_back\\kurswork_back\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BF460239-454C-4429-B37F-80A5CEF94137}|kurswork_back\\kurswork_back.csproj|solutionrelative:kurswork_back\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -34,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,46 +50,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "DatabaseSeeder.cs",
+              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Infrastructure\\Seed\\DatabaseSeeder.cs",
+              "RelativeDocumentMoniker": "kurswork_back\\Infrastructure\\Seed\\DatabaseSeeder.cs",
+              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Infrastructure\\Seed\\DatabaseSeeder.cs",
+              "RelativeToolTip": "kurswork_back\\Infrastructure\\Seed\\DatabaseSeeder.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAgwCAAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T16:11:55.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PasswordHasher.cs",
+              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Services\\PasswordHasher.cs",
+              "RelativeDocumentMoniker": "kurswork_back\\Services\\PasswordHasher.cs",
+              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Services\\PasswordHasher.cs",
+              "RelativeToolTip": "kurswork_back\\Services\\PasswordHasher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T16:11:31.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\appsettings.json",
               "RelativeDocumentMoniker": "kurswork_back\\appsettings.json",
               "ToolTip": "D:\\kurswork_back\\kurswork_back\\appsettings.json",
               "RelativeToolTip": "kurswork_back\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-07-04T15:32:25.168Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AdminController.cs",
               "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "kurswork_back\\Controllers\\AdminController.cs",
               "ToolTip": "D:\\kurswork_back\\kurswork_back\\Controllers\\AdminController.cs",
               "RelativeToolTip": "kurswork_back\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-04T15:31:25.751Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DatabaseSeeder.cs",
-              "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Infrastructure\\Seed\\DatabaseSeeder.cs",
-              "RelativeDocumentMoniker": "kurswork_back\\Infrastructure\\Seed\\DatabaseSeeder.cs",
-              "ToolTip": "D:\\kurswork_back\\kurswork_back\\Infrastructure\\Seed\\DatabaseSeeder.cs",
-              "RelativeToolTip": "kurswork_back\\Infrastructure\\Seed\\DatabaseSeeder.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAmwDQAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-04T15:05:08.155Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Models\\User.cs",
               "RelativeDocumentMoniker": "kurswork_back\\Models\\User.cs",
@@ -97,7 +114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "kurswork_back\\Controllers\\AuthController.cs",
@@ -105,12 +122,11 @@
               "RelativeToolTip": "kurswork_back\\Controllers\\AuthController.cs",
               "ViewState": "AgIAAFEAAAAAAAAAAAAmwF4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-19T19:15:31.703Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-19T19:15:31.703Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\kurswork_back\\kurswork_back\\Program.cs",
               "RelativeDocumentMoniker": "kurswork_back\\Program.cs",
@@ -118,8 +134,7 @@
               "RelativeToolTip": "kurswork_back\\Program.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAAAAADUAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-19T19:15:13.708Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-19T19:15:13.708Z"
             }
           ]
         }
