@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "kurswork_back.Controllers.AdminController",
+    "Method": "ResetDemo",
+    "RelativePath": "api/admin/reset-demo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "X-Reset-Secret",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "kurswork_back.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "api/auth/login",
